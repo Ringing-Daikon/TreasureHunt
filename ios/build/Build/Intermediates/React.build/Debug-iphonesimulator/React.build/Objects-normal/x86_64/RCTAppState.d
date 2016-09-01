@@ -1,0 +1,14 @@
+dependencies: \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Modules/RCTAppState.m \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Modules/RCTAppState.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Modules/RCTEventEmitter.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/inspiredtolive/Desktop/HackReactor/TreasureHunt/node_modules/react-native/React/Base/RCTUtils.h

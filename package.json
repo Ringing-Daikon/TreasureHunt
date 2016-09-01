@@ -1,6 +1,6 @@
 {
   "name": "TreasureHunt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
@@ -11,6 +11,7 @@
     "mongoose": "^4.6.0",
     "react": "15.3.1",
     "react-native": "0.32.0",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "react-native-maps": "^0.8.0"
   }
 }
