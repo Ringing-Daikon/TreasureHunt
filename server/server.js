@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var port = 1234;
 app.listen(port, function() {
-  console.log('Now listening on Port: ' + port);
+  console.log('Listening on Port: ' + port);
 });
 
 
@@ -35,11 +35,11 @@ db.on('error', function(err) {
 });
 
 db.once('open', function() {
-  console.log('Connection to database successful.');
+  console.log('Database connection successful.');
 });
 
 // Schemas:
-var puzzleSchema = new mongoose.Schema{
+var puzzleSchema = new mongoose.Schema({
   id: Number,
   next: Number,
   location: {
@@ -48,6 +48,8 @@ var puzzleSchema = new mongoose.Schema{
   },
   riddle: String,
   answers: [String]
-}
+});
 
 var Puzzle = mongoose.model('Puzzle', puzzleSchema);
+
+
