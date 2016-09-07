@@ -60,10 +60,17 @@ var puzzleSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  // 
+  // Location where user must be to receive/solve the riddle.
   location: {
     latitude: Number,
     longitude: Number
+  },
+  // Radius from location that the user must be within in order to receive/solve the puzzle.
+  // Currently default is 40 (feet?) but this will probably change depending on what data
+  // is needed to provide geofencing.
+  radius: {
+    type: Number,
+    default: 40
   },
   // The title of the puzzle
   // ( ex: 'The Goat of Hack Reactor' );
