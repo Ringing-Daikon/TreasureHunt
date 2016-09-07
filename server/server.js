@@ -46,6 +46,7 @@ db.once('open', function() {
 // Puzzle schema represents the information needed at each
 // stop in the treasure hunt.  
 var puzzleSchema = new mongoose.Schema({
+  teasureHuntTitle: String,
   // Unique IDs of the current, previous, and next puzzles
   // (like a linked list of puzzles).
   id: {
