@@ -11,7 +11,8 @@ import {
   Text,
   View,
   Image,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from 'react-native';
 import MapView from 'react-native-maps';
 
@@ -22,18 +23,45 @@ const MyStatusBar = ({backgroundColor}) => (
 );
 
 class TreasureHunt extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      lastPosition: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }
+    };
+    this.watchID = null;
+  }
+
+  componentDidMount () {
+    this.watchID = navigator.geolocation.watchPosition(({coords}) => {
+      var lastPosition = {longitude: coords.longitude, latitude: coords.latitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421};
+      this.setState({lastPosition});
+    });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  centerOnUser () {
+    this.setState({});
+  }
+
   render() {
     return (
       <View style={ styles.container }>
         <MyStatusBar backgroundColor="#01579B" />
-
-
         <View style={ styles.nav }>
           <Image source={require('./assets/menu.png')} />
           <Text style={ styles.name }>TreasureHunt</Text>
           <View style={ styles.navItem}></View>
         </View>
         <MapView
+          region={this.state.lastPosition}
           style={ styles.map }
           showsUserLocation={ true }
           followsUserLocation={ true }
@@ -44,11 +72,12 @@ class TreasureHunt extends Component {
             <MapView.Marker
               key={i}
               coordinate={coord}
-              image={allenImg}
             />
           )}
         </MapView>
-
+        <TouchableOpacity onPress={this.centerOnUser.bind(this)}>
+          <Text style={ styles.button}>Center</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -85,6 +114,19 @@ const styles = StyleSheet.create({
   map: {
     flex: 16
   },
+  button: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    padding: 12,
+    shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
+  }
 });
 
 // dummy data
@@ -110,7 +152,5 @@ const markers = [
     longitude: -122.407
   },
 ];
-
-const allenImg = require('./assets/allen.png');
 
 AppRegistry.registerComponent('TreasureHunt', () => TreasureHunt);
