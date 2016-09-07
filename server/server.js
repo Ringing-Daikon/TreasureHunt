@@ -38,16 +38,47 @@ db.once('open', function() {
   console.log('Database connection successful.');
 });
 
-// Schemas:
+
+/*************************
+        SCHEMAS
+*************************/
+
+// Puzzle schema represents the information needed at each
+// stop in the treasure hunt.  
 var puzzleSchema = new mongoose.Schema({
-  id: Number,
-  next: Number,
+  // Unique IDs of the current, previous, and next puzzles
+  // (like a linked list of puzzles).
+  id: {
+    type: String,
+    unique: true
+  },
+  next: {
+    type: String,
+    unique: true
+  },
+  previous: {
+    type: String,
+    unique: true
+  },
+  // 
   location: {
     latitude: Number,
-    Longitude: Number
+    longitude: Number
   },
+  // The title of the puzzle
+  // ( ex: 'The Goat of Hack Reactor' );
+  title: String,
+  // The riddle that must be solved.
+  // ( ex: 'What lies beneith the stone goat?' )
   riddle: String,
-  answers: [String]
+  // An array of acceptable answers to the riddle.
+  // ( ex: ['wreath', 'wreaths', 'stone wreath', 'stone wreaths', 'garland', 'garlands', 'stone garland' ...] )
+  answers: [String],
+  // Date that the puzzle schema is created (not used for anything at the moment).
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 var Puzzle = mongoose.model('Puzzle', puzzleSchema);
