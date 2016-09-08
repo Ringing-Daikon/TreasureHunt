@@ -2,52 +2,48 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image,
-  StatusBar,
   TouchableOpacity
 } from 'react-native';
 import MapView from 'react-native-maps';
 
 
-class TreasureHuntMap extends React.Component {
-
+class TreasureHuntMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lastPosition: {
         latitude: 37.78825,
         longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421
       }
     };
     this.watchID = null;
   }
 
+  // Track the user's location when component is done rendering
   componentDidMount () {
     this.watchID = navigator.geolocation.watchPosition(({coords}) => {
-      var lastPosition = {longitude: coords.longitude, latitude: coords.latitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421};
-      this.setState({lastPosition});
+      var lastPosition = {longitude: coords.longitude, latitude: coords.latitude};
+      this.state.lastPosition = lastPosition;
     });
   }
 
+  // Stop tracking the user's location when the component is removed
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
   centerOnUser () {
-    this.setState({});
+    this.refs.map.animateToCoordinate(this.state.lastPosition, 200);
   }
 
   render() {
     return (
-      <View style={ styles.map }>
+      <View style={ styles.container }>
         <MapView
-          region={this.state.lastPosition}
+          ref="map"
           style={ styles.map }
           showsUserLocation={ true }
           followsUserLocation={ true }
@@ -65,13 +61,16 @@ class TreasureHuntMap extends React.Component {
           <Text style={ styles.button}>Center</Text>
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  map: {
+  container: {
     flex: 16
+  },
+  map: {
+    flex: 1
   },
   button: {
     position: 'absolute',
