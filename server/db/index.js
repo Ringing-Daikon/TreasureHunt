@@ -4,7 +4,7 @@
 *************************/
 var mongoose = require('mongoose');
 var mongoUri = 'mongodb://localhost/treasure-hunt-database';
-mongoose.connect(uri);
+mongoose.connect(mongoUri);
 var db = mongoose.connection;
 db.on('error', function(err) {
   console.log(err);

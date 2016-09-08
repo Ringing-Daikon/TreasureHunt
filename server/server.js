@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var db = require('./db.index.js');
+var db = require('./db/index.js');
 
 /*************************
         SERVER
@@ -16,7 +16,5 @@ app.use(bodyParser.json());
 // on req.url and req.params.
 app.use(bodyParser.urlencoded({extended: true}));
 
-var port = 1234;
-app.listen(port, function() {
-  console.log('Listening on Port: ' + port);
-});
+
+module.exports = app;
