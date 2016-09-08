@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import MapView from 'react-native-maps';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class TreasureHuntMap extends Component {
   constructor(props) {
@@ -57,8 +57,8 @@ class TreasureHuntMap extends Component {
             />
           )}
         </MapView>
-        <TouchableOpacity onPress={this.centerOnUser.bind(this)}>
-          <Text style={ styles.button}>Center</Text>
+        <TouchableOpacity style={ styles.button } onPress={ this.centerOnUser.bind(this) }>
+          <Icon name="md-locate" size={28} color="#0972e3" />
         </TouchableOpacity>
       </View>
     );
@@ -76,15 +76,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    padding: 12,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
+    paddingTop: 6,
+    paddingBottom: 3,
+    paddingRight: 8,
+    paddingLeft: 8,
+    backgroundColor: '#fff',
     shadowOffset: {
       height: 1,
       width: 0
     },
-  }
+    borderRadius: 30
+  },
 });
 
 module.exports = TreasureHuntMap;
