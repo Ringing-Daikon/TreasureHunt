@@ -11,7 +11,7 @@ import {
 import MyStatusBar from './components/common/MyStatusBar';
 import TopNavigationBar from './components/common/TopNavigationBar';
 import TreasureHuntMap from './components/map/Map';
-import Menu from './components/common/DrawerMenu';
+import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
 
 
@@ -21,7 +21,7 @@ class TreasureHunt extends Component {
   }
 
   render() {
-    const menu = <Menu/>;
+    const menu = <DrawerMenu/>;
     return (
       <SideMenu menu={menu}>
       <View style={ styles.container }>

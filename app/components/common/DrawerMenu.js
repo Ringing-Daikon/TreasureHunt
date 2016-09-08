@@ -8,7 +8,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-var Menu = () => {
+var DrawerMenu = () => {
 
   return (
     <View style={styles.container}>
@@ -66,4 +66,4 @@ var styles = StyleSheet.create({
   }
 });
 
-export default Menu;
+export default DrawerMenu;
