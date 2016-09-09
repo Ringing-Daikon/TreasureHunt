@@ -12,30 +12,33 @@ import TopNavigationBar from './components/common/TopNavigationBar';
 import TreasureHuntMap from './components/map/Map';
 import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
-import Lists from './components/side-menu/lists';
+import Lists from './components/side-menu/Lists';
 
 
 class TreasureHunt extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isOpen: false,
-      screen: 'puzzleList'
+      isSideMenuOpen: false,
+      screen: 'map'
     };
   }
 
   showSideMenu () {
-    this.setState({ isOpen: true });
+    this.setState({ isSideMenuOpen: true });
   }
 
   puzzlesButtonPressHandler() {
-    this.state.screen = 'puzzleList';
+    this.setState({ isSideMenuOpen: false});
+    this.setState({screen: 'puzzleList'});
   }
 
   treasureHuntsButtonPressHandler() {
     
   }
 
+  //  The conditional statements below render different screens depending
+  //  on the 'screen' state.
   render() {
     const menu = <DrawerMenu
       puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
@@ -43,7 +46,7 @@ class TreasureHunt extends Component {
     />;
     if (this.state.screen === 'map') {
       return (
-        <SideMenu menu={menu} isOpen={ this.state.isOpen }>
+        <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
           <View style={ styles.container }>
             <MyStatusBar backgroundColor="#01579B"/>
             <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
@@ -54,9 +57,9 @@ class TreasureHunt extends Component {
     }
     else if (this.state.screen === 'puzzleList') {
       return (
-        <SideMenu menu={ menu } isOpen={ this.state.isOpen }>
-          <View>
-            <Lists />
+        <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
+          <View style={ styles.container }>
+            <Lists sideMenuOpen={this.state.isOpen}/>
           </View>
         </SideMenu>
       );
