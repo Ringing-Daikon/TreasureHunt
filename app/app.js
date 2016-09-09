@@ -12,7 +12,7 @@ import TopNavigationBar from './components/common/TopNavigationBar';
 import TreasureHuntMap from './components/map/Map';
 import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
-import Lists from './components/side-menu/lists';
+import Lists from './components/side-menu/Lists';
 
 
 class TreasureHunt extends Component {
