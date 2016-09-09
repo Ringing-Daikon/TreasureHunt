@@ -10,11 +10,11 @@ var puzzleSchema = new mongoose.Schema({
   // (like a linked list of puzzles).
   next: {
     type: String,
-    default: 'n/a'
+    default: 'null'
   },
   previous: {
     type: String,
-    default: 'n/a'
+    default: 'null'
   },
   // Location where user must be to receive/solve the riddle.
   location: {
@@ -43,5 +43,3 @@ var puzzleSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Puzzle', puzzleSchema);
-
-

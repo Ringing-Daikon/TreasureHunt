@@ -1,5 +1,15 @@
 var Puzzle = require('./Puzzle.js');
 
+//initialize from default.json
+require('../data/default.json')
+  .forEach(function(puzzleObj, index) {
+      new Puzzle(puzzleObj).save(function (err, data) {
+        err ? 
+          console.log(err) 
+          : console.log(data);
+      });
+    });
+
 module.exports = {
   //retrieve all puzzles
   retrievePuzzles: function (req, res) {
@@ -27,7 +37,7 @@ module.exports = {
           res.status(500).send(err) 
           : dataArr.push(data);
         index === req.body.length - 1 && res.status(201).send(JSON.stringify(dataArr));
-      })
+      });
     });
   },
   //deletes all puzzles and returns object with status and number deleted
