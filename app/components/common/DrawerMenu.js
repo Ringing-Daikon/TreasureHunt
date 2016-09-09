@@ -13,28 +13,39 @@ var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) 
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.textTitle} >
+      <Text style={styles.textTitle} >
         Choose Your Adventure!
+      </Text>
+
+
+      <TouchableOpacity>
+        <Text style={styles.text1}>
+          <Icon name="check-circle" size={30} color="white" /> Menu Item 1
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.text1}>
-        Menu Item 1 <Icon name="check-circle" size={30} color="white" />
+      <TouchableOpacity>
+        <Text style={styles.text2}>
+          <Icon name="chevron-circle-right" size={30} color="white" /> Menu Item 2
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.text2}>
-        Menu Item 2 <Icon name="chevron-circle-right" size={30} color="white" />
+      <TouchableOpacity onPress={puzzlesButtonPressHandler}>
+        <Text style={styles.text1}>
+          <Icon name="list-ol" size={30} color="white" /> List of Puzzles
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.text1} onPress={puzzlesButtonPressHandler}>
-        List of Puzzles <Icon name="list-ol" size={30} color="white" />
+      <TouchableOpacity>
+        <Text style={styles.text2}>
+          <Icon name="list" size={30} color="white" /> Treasure Hunts
+        </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.text2}>
-        Treasure Hunts <Icon name="list" size={30} color="white" />
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.text1}>
-        Histroy <Icon name="history" size={30} color="white" />
+      <TouchableOpacity>
+        <Text style={styles.text1}>
+          <Icon name="history" size={30} color="white" /> Histroy
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -55,7 +66,7 @@ var styles = StyleSheet.create({
     color: 'steelblue'
   },
   text1: {
-    textAlign: 'center',
+    justifyContent: 'center',
     color: 'black',
     fontWeight: 'bold',
     fontSize: 25,
@@ -63,7 +74,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'steelblue'
   },
   text2: {
-    textAlign: 'center',
+    justifyContent: 'center',
     color: 'black',
     fontWeight: 'bold',
     fontSize: 25,
