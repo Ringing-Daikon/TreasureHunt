@@ -8,7 +8,7 @@ export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb =
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
     server += `/${treasureHuntTitle}`;
-    if(puzzleTitle !== null)
+    if(riddleTitle !== null)
       server += `/${riddleTitle}`;
   }
   fetch(server, 
@@ -55,7 +55,7 @@ export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = n
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
     server += `/${treasureHuntTitle}`;
-    if(puzzleTitle !== null)
+    if(riddleTitle !== null)
       server += `/${riddleTitle}`;
   }
   fetch(server, 
