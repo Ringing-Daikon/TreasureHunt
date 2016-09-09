@@ -9,13 +9,14 @@ module.exports = {
         : res.status(200).send(JSON.stringify(data));
     });
   },
-  retrievePuzzleSet: function (req, res) {
-    Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
-      err ? 
-        res.status(404).send(err)
-        : res.status(200).send(JSON.stringify(data));
-    });
-  },
+  //COMING SOON!
+  // retrievePuzzleSet: function (req, res) {
+  //   Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
+  //     err ? 
+  //       res.status(404).send(err)
+  //       : res.status(200).send(JSON.stringify(data));
+  //   });
+  // },
   //will create all puzzles from array and return the array of puzzles created
   createPuzzles: function (req, res) {
     console.log(req.body);
@@ -36,13 +37,14 @@ module.exports = {
         res.status(500).send(err)
         : res.status(200).send(data);
     });
-  }, 
-  deletePuzzleSet: function(req, res) {
-    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
-      err ? 
-        res.status(404).send(err)
-        : res.status(200).send(JSON.stringify(data));
-    });
   }
+  // , //COMING SOON!
+  // deletePuzzleSet: function(req, res) {
+  //   Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
+  //     err ? 
+  //       res.status(404).send(err)
+  //       : res.status(200).send(JSON.stringify(data));
+  //   });
+  // }
 };
   
