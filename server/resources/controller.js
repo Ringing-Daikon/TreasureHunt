@@ -38,7 +38,7 @@ module.exports = {
     });
   }, 
   deletePuzzleSet: function(req, res) {
-    Puzzle.remote({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
+    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
       err ? 
         res.status(404).send(err)
         : res.status(200).send(JSON.stringify(data));
