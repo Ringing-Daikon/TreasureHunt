@@ -12,15 +12,16 @@ import TopNavigationBar from './components/common/TopNavigationBar';
 import TreasureHuntMap from './components/map/Map';
 import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
+import Lists from './components/side-menu/lists';
 
 
 class TreasureHunt extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isOpen: false
-
-    }; 
+      isOpen: false,
+      screen: 'puzzleList'
+    };
   }
 
   showSideMenu () {
@@ -28,7 +29,7 @@ class TreasureHunt extends Component {
   }
 
   puzzlesButtonPressHandler() {
-    
+    this.state.screen = 'puzzleList';
   }
 
   treasureHuntsButtonPressHandler() {
@@ -37,18 +38,30 @@ class TreasureHunt extends Component {
 
   render() {
     const menu = <DrawerMenu
-      puzzlesButtonPressHandler={this.puzzlesButtonPressHandler}
-      treasureHuntsButtonPressHandler={this.treasureHuntsButtonPressHandler}
+      puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
+      treasureHuntsButtonPressHandler={this.treasureHuntsButtonPressHandler.bind(this)}
     />;
-    return (
-      <SideMenu menu={menu} isOpen={ this.state.isOpen }>
-        <View style={ styles.container }>
-          <MyStatusBar backgroundColor="#01579B"/>
-          <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-          <TreasureHuntMap />
-        </View>
-      </SideMenu>
-    );
+    if (this.state.screen === 'map') {
+      return (
+        <SideMenu menu={menu} isOpen={ this.state.isOpen }>
+          <View style={ styles.container }>
+            <MyStatusBar backgroundColor="#01579B"/>
+            <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
+            <TreasureHuntMap />
+          </View>
+        </SideMenu>
+      );
+    }
+    else if (this.state.screen === 'puzzleList') {
+      return (
+        <SideMenu menu={ menu } isOpen={ this.state.isOpen }>
+          <View>
+            <Lists />
+          </View>
+        </SideMenu>
+      );
+    }
+
   }
 }
 
