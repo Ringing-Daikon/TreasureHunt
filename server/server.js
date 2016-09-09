@@ -17,6 +17,6 @@ app.use(bodyParser.json());
 // on req.url and req.params.
 app.use(bodyParser.urlencoded({extended: true}));
 
-//app.use(require('./resources/router.js'));
+app.use(require('./resources/router.js'));
 
 module.exports = app;

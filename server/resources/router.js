@@ -1,9 +1,8 @@
-var router = require('express').Router;
-var api = require('./pokemonController.js');
-
+var router = require('express').Router();
+var api = require('./controller.js');
 router.route('/api/puzzles') 
-  .get(api.retrieve)
-  .post(api.create)
-  .delete(api.delete);
+  .get(api.retrievePuzzles)
+  .post(api.createPuzzles)
+  .delete(api.deletePuzzles);
 
 module.exports = router;

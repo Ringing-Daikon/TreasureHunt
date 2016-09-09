@@ -8,8 +8,14 @@ var puzzleSchema = new mongoose.Schema({
   teasureHuntTitle: String,
   // Unique IDs of the current, previous, and next puzzles
   // (like a linked list of puzzles).
-  next: String, //if last, next == tail
-  previous: String, //if first, next == head
+  next: {
+    type: String,
+    default: 'n/a'
+  },
+  previous: {
+    type: String,
+    default: 'n/a'
+  },
   // Location where user must be to receive/solve the riddle.
   location: {
     latitude: Number,
@@ -24,7 +30,10 @@ var puzzleSchema = new mongoose.Schema({
   },
   // The title of the puzzle
   // ( ex: 'The Goat of Hack Reactor' );
-  riddleTitle: String,
+  riddleTitle: {
+    type: String,
+    unique: true
+  }, 
   // The riddle that must be solved.
   // ( ex: 'What lies beneith the stone goat?' )
   riddleContent: String,
