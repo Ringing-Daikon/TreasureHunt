@@ -14,8 +14,7 @@ import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
 import Lists from './components/side-menu/Lists';
 import LandingPage from './LandingPage';
-
-
+import { retrievePuzzles } from './util/util.js';
 
 class TreasureHunt extends Component {
   constructor (props) {
@@ -23,8 +22,13 @@ class TreasureHunt extends Component {
     this.state = {
       isSideMenuOpen: false,
       screen: 'map',
-      onLanding: true
-    };
+      onLanding: true,      
+      currentHunt: []
+    }; 
+  }
+
+  componentWillMount() {
+    retrievePuzzles((puzzles) => this.setState({currentHunt: puzzles}));
   }
 
   hideLandingPage () {
@@ -65,7 +69,7 @@ class TreasureHunt extends Component {
             <View style={ styles.container }>
               <MyStatusBar backgroundColor="#01579B"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <TreasureHuntMap />
+              <TreasureHuntMap currentHunt={this.state.currentHunt} />
             </View>
           </SideMenu>
         );
