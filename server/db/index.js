@@ -7,10 +7,9 @@ var mongoUri = 'mongodb://localhost/treasure-hunt-database';
 var chalk = require('chalk');
 mongoose.connect(mongoUri);
 var db = mongoose.connection;
-db.on('error', function(err) {
-  console.log(err);
-});
-db.once('open', function() {
+
+db.on('error', err => console.log(err));
+db.once('open', () => {
   console.log(require('chalk').green.dim('Connected to ' + mongoUri));
   //initialize data from default.json
   console.log(chalk.magenta.bold('Loading Default Data...'));
