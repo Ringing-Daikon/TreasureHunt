@@ -1,7 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var db = require('./db/index.js');
+
+require('./db/index.js');
 
 /*************************
         SERVER
@@ -16,5 +17,6 @@ app.use(bodyParser.json());
 // on req.url and req.params.
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(require('./resources/router.js'));
 
 module.exports = app;
