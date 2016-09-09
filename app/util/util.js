@@ -2,7 +2,7 @@ const server = 'http://localhost:1337/api/puzzles';
 
 export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
   let server = this.server; //create a local instance of server
-  if(typeof treaureHuntTitle === 'function')
+  if(typeof treasureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;
@@ -49,7 +49,7 @@ export var createPuzzles = (puzzleArray = [], cb = null) => {
 
 export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
   let server = this.server; //create a local instance of server
-  if(typeof treaureHuntTitle === 'function')
+  if(typeof treasureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;

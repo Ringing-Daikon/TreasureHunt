@@ -46,7 +46,7 @@ module.exports = {
   },
   // 
   deletePuzzleSet (req, res) {
-    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, (err, data) => { 
+    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, (err, data) => {
       err ? 
         res.status(500).send(err)
         : res.status(200).send(JSON.stringify(data));
