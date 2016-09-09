@@ -9,28 +9,33 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-var DrawerMenu = () => {
+var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>
-      Choose Your Adventure!
-      </Text>
-      <Text style={styles.text1}>
+      <TouchableOpacity style={styles.textTitle} >
+        Choose Your Adventure!
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.text1}>
         Menu Item 1 <Icon name="check-circle" size={30} color="white" />
-      </Text>
-      <Text style={styles.text2}>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.text2}>
         Menu Item 2 <Icon name="chevron-circle-right" size={30} color="white" />
-      </Text>
-      <Text style={styles.text1} >
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.text1} onPress={puzzlesButtonPressHandler}>
         List of Puzzles <Icon name="list-ol" size={30} color="white" />
-      </Text>
-      <Text style={styles.text2}>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.text2}>
         Treasure Hunts <Icon name="list" size={30} color="white" />
-      </Text>
-      <Text style={styles.text1}>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.text1}>
         Histroy <Icon name="history" size={30} color="white" />
-      </Text>
+      </TouchableOpacity>
     </View>
   );
 };
