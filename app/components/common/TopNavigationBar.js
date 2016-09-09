@@ -1,21 +1,20 @@
-'use strict'
+'use strict';
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
-  Image,
-  StatusBar,
   TouchableOpacity
 } from 'react-native';
-var menuImage = require('../../assets/menu.png');
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
-var TopNavigationBar = () => (
+var TopNavigationBar = ({showSideMenu}) => (
   <View style={ styles.nav }>
-    <Image source={menuImage} />
+    <TouchableOpacity onPress={showSideMenu}>
+      <Icon name="md-menu" size={26} color="#fff" />
+    </TouchableOpacity>
     <Text style={ styles.name }>TreasureHunt</Text>
     <View style={ styles.navItem}></View>
   </View>
@@ -39,6 +38,6 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   navItem: {
-    width: 20
+    width: 26
   },
 });
