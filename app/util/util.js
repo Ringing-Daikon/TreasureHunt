@@ -1,6 +1,6 @@
 const server = 'http://localhost:1337/api/puzzles';
 
-export var retrievePuzzles = (treasureHuntTitle = null, puzzleTitle = null, cb = null) => {
+export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
   let server = this.server; //create a local instance of server
   if(typeof treaureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
@@ -9,7 +9,7 @@ export var retrievePuzzles = (treasureHuntTitle = null, puzzleTitle = null, cb =
   if(treasureHuntTitle !== null) {
     server += `/${treasureHuntTitle}`;
     if(puzzleTitle !== null)
-      server += `/${puzzleTitle}`;
+      server += `/${riddleTitle}`;
   }
   fetch(server, 
   {
@@ -28,7 +28,7 @@ export var retrievePuzzles = (treasureHuntTitle = null, puzzleTitle = null, cb =
   });
 };
 //should take an array of puzzle objects, will then stringify before sending. 
-export var createPuzzles = (puzzleArray, cb = null) => {
+export var createPuzzles = (puzzleArray = [], cb = null) => {
   fetch(server, 
   {
     method: 'POST',
@@ -47,7 +47,7 @@ export var createPuzzles = (puzzleArray, cb = null) => {
   });
 };
 
-export var deletePuzzles = (treasureHuntTitle = null, puzzleTitle = null, cb = null) => {
+export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
   let server = this.server; //create a local instance of server
   if(typeof treaureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
@@ -56,7 +56,7 @@ export var deletePuzzles = (treasureHuntTitle = null, puzzleTitle = null, cb = n
   if(treasureHuntTitle !== null) {
     server += `/${treasureHuntTitle}`;
     if(puzzleTitle !== null)
-      server += `/${puzzleTitle}`;
+      server += `/${riddleTitle}`;
   }
   fetch(server, 
   {
