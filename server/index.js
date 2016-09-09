@@ -25,6 +25,6 @@ cM('░░░░░░'), ('█▀▀█████████▀▀▀▀█�
 var app = require('./server.js'); 
 var port = 1337;
 
-app.listen(port, function() {
+app.listen(port, () => {
   console.log(chalk.green('TreasureHunt RESTful API listening on port ') + chalk.red.bold(port));
 });
