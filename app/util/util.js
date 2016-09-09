@@ -64,7 +64,38 @@ export var initializeDemo = function(cb) {
       'Content-Type': 'application/json'
     },
     /***Demo Data***/
-    body: [{"treasureHuntTitle":"Market Mystery","location":{"latitude":37.784991,"longitude":-122.406624},"riddleTitle":"Talking Points","riddleContent":"Feeling chatty.","riddleAnswer":"converse"},{"treasureHuntTitle":"Market Mystery","location":{"latitude":37.784613,"longitude":-122.407617},"riddleTitle":"Advent","riddleContent":"Birth of a man memorialized in song.","riddleAnswer":"1836"},{"treasureHuntTitle":"Market Mystery","location":{"latitude":37.783523,"longitude":-122.4091},"riddleTitle":"Das Spiel","riddleContent":"Find the cellar.","riddleAnswer":"mikkeller"}]
+    body: [
+      {
+        "treasureHuntTitle":"Market Mystery",
+        "location":{
+          "latitude":37.784991,
+          "longitude":-122.406624
+        },
+        "riddleTitle":"Talking Points",
+        "riddleContent":"Feeling chatty.",
+        "riddleAnswer":"converse"
+      },
+      {
+        "treasureHuntTitle":"Market Mystery",
+        "location":{
+          "latitude":37.784613,
+          "longitude":-122.407617
+        },
+        "riddleTitle":"Advent",
+        "riddleContent":"Birth of a man memorialized in song.",
+        "riddleAnswer":"1836"
+      },
+      {
+        "treasureHuntTitle":"Market Mystery",
+        "location":{
+          "latitude":37.783523,
+          "longitude":-122.4091
+        },
+        "riddleTitle":"Das Spiel",
+        "riddleContent":"Find the cellar.",
+        "riddleAnswer":"mikkeller"
+      }
+    ]
   })
   .then(response => response.json())
   .then(responseJson => {
