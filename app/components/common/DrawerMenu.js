@@ -32,7 +32,7 @@ var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) 
 
       <TouchableOpacity onPress={puzzlesButtonPressHandler}>
         <Text style={styles.text1}>
-          <Icon name="list-ol" size={30} color="white" /> List of Puzzles
+          <Icon name="list-ol" size={30} color="white" /> Current Puzzles
         </Text>
       </TouchableOpacity>
 
