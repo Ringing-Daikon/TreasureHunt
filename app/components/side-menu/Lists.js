@@ -16,7 +16,7 @@ import MyStatusBar from '../common/MyStatusBar';
 //puzzle titles
 // dummydata
 var data = [{
-  title: 'The Goat of Hack Reactorasdff asdf',
+  title: 'The Goat of Hack Reactor',
 },
 {
   title: 'Talking with friends'
