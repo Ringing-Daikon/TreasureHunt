@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
-
+import MyStatusBar from '../common/MyStatusBar';
 // 1- format list.
 // 2- make list buttons clickable
 // 3- test utility functions - use real data
@@ -16,7 +16,7 @@ import DrawerMenu from '../common/DrawerMenu';
 //puzzle titles
 // dummydata
 var data = [{
-  title: 'The Goat of Hack Reactor',
+  title: 'The Goat of Hack Reactorasdff asdf',
 },
 {
   title: 'Talking with friends'
@@ -52,6 +52,7 @@ class Lists extends React.Component {
     //   a formatted row.
     return (
       <View style={styles.viewContainer}>
+        <MyStatusBar backgroundColor="#01579B"/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text>{rowData.title}</Text>}
@@ -74,6 +75,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
+  list: {
+    backgroundColor: 'aliceblue'
+  }
   // container: {
   //   flex: 1,
   //   justifyContent: 'center',
