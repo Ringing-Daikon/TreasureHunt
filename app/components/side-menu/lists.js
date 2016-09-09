@@ -1,9 +1,10 @@
-import React, {
-  Component,
+import React, { Component } from 'react';
+import {
   ListView,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native';
-import ViewContainer from './ViewContainer';
+// import ViewContainer from './ViewContainer';
 
 //puzzle titles
 var data = [{
@@ -16,12 +17,12 @@ var data = [{
   title: 'Sword in the water'
 }];
 
-class Lists extends Component {
+class Lists extends React.Component {
   constructor(props) {
     super(props);
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(data);
+      dataSource: ds.cloneWithRows(data)
     }
   }
 
@@ -32,23 +33,24 @@ class Lists extends Component {
   //   };
   // }
 
+        // <StatusBarBackground style={ styles.statusBar } />
+
   render() {
     return (
-      <ViewContainer>
-        <StatusBarBackground style={ styles.statusBar } />
         <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text>{rowData.title}</Text>}
         >
         </ListView>
-      </ViewContainer>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  statusBar: {
-    backgroundColor: 'AliceBlue'
-  }
-});
+// const styles = StyleSheet.create({
+//   statusBar: {
+//     backgroundColor: 'AliceBlue'
+//   }
+// });
 
 
 
