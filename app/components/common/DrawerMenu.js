@@ -3,33 +3,50 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-var DrawerMenu = () => {
+var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>
-      Choose Your Adventure!
+      <Text style={styles.textTitle} >
+        Choose Your Adventure!
       </Text>
-      <Text style={styles.text1}>
-        Menu Item 1 <Icon name="check-circle" size={30} color="white" />
-      </Text>
-      <Text style={styles.text2}>
-        Menu Item 2 <Icon name="chevron-circle-right" size={30} color="white" />
-      </Text>
-      <Text style={styles.text1}>
-          List of Puzzles <Icon name="list-ol" size={30} color="white" />
-      </Text>
-      <Text style={styles.text2}>
-        Treasure Hunts <Icon name="list" size={30} color="white" />
-      </Text>
-      <Text style={styles.text1}>
-        Histroy <Icon name="history" size={30} color="white" />
-      </Text>
+
+
+      <TouchableOpacity>
+        <Text style={styles.text1}>
+          <Icon name="check-circle" size={30} color="white" /> Menu Item 1
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.text2}>
+          <Icon name="chevron-circle-right" size={30} color="white" /> Menu Item 2
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={puzzlesButtonPressHandler}>
+        <Text style={styles.text1}>
+          <Icon name="list-ol" size={30} color="white" /> Current Puzzles
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.text2}>
+          <Icon name="list" size={30} color="white" /> Treasure Hunts
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.text1}>
+          <Icon name="history" size={30} color="white" /> Histroy
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -49,7 +66,7 @@ var styles = StyleSheet.create({
     color: 'steelblue'
   },
   text1: {
-    textAlign: 'center',
+    justifyContent: 'center',
     color: 'black',
     fontWeight: 'bold',
     fontSize: 25,
@@ -57,7 +74,7 @@ var styles = StyleSheet.create({
     backgroundColor: 'steelblue'
   },
   text2: {
-    textAlign: 'center',
+    justifyContent: 'center',
     color: 'black',
     fontWeight: 'bold',
     fontSize: 25,
