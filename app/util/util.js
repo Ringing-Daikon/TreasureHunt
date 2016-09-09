@@ -66,6 +66,7 @@ export var initializeDemo = function(cb) {
     /***Demo Data***/
     body: [
       {
+        "next": "Advent",
         "treasureHuntTitle":"Market Mystery",
         "location":{
           "latitude":37.784991,
@@ -76,6 +77,8 @@ export var initializeDemo = function(cb) {
         "riddleAnswer":"converse"
       },
       {
+        "next":"Das Spiel",
+        "previous": "Talking Points",
         "treasureHuntTitle":"Market Mystery",
         "location":{
           "latitude":37.784613,
@@ -86,6 +89,7 @@ export var initializeDemo = function(cb) {
         "riddleAnswer":"1836"
       },
       {
+        "previous": "Advent",
         "treasureHuntTitle":"Market Mystery",
         "location":{
           "latitude":37.783523,
