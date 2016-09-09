@@ -17,15 +17,29 @@ import SideMenu from 'react-native-side-menu';
 class TreasureHunt extends Component {
   constructor (props) {
     super(props);
-    this.state = { isOpen: false }; 
+    this.state = {
+      isOpen: false
+
+    }; 
   }
 
   showSideMenu () {
     this.setState({ isOpen: true });
   }
 
+  puzzlesButtonPressHandler() {
+    
+  }
+
+  treasureHuntsButtonPressHandler() {
+    
+  }
+
   render() {
-    const menu = <DrawerMenu/>;
+    const menu = <DrawerMenu
+      puzzlesButtonPressHandler={this.puzzlesButtonPressHandler}
+      treasureHuntsButtonPressHandler={this.treasureHuntsButtonPressHandler}
+    />;
     return (
       <SideMenu menu={menu} isOpen={ this.state.isOpen }>
         <View style={ styles.container }>

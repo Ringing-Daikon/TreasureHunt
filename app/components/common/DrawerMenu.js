@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -21,8 +22,8 @@ var DrawerMenu = () => {
       <Text style={styles.text2}>
         Menu Item 2 <Icon name="chevron-circle-right" size={30} color="white" />
       </Text>
-      <Text style={styles.text1}>
-          List of Puzzles <Icon name="list-ol" size={30} color="white" />
+      <Text style={styles.text1} >
+        List of Puzzles <Icon name="list-ol" size={30} color="white" />
       </Text>
       <Text style={styles.text2}>
         Treasure Hunts <Icon name="list" size={30} color="white" />
