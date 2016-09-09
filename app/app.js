@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   StatusBar,
   TouchableOpacity
 } from 'react-native';
@@ -18,17 +17,22 @@ import SideMenu from 'react-native-side-menu';
 class TreasureHunt extends Component {
   constructor (props) {
     super(props);
+    this.state = { isOpen: false }; 
+  }
+
+  showSideMenu () {
+    this.setState({ isOpen: true });
   }
 
   render() {
     const menu = <DrawerMenu/>;
     return (
-      <SideMenu menu={menu}>
-      <View style={ styles.container }>
-        <MyStatusBar backgroundColor="#01579B"/>
-        <TopNavigationBar />
-        <TreasureHuntMap />
-      </View>
+      <SideMenu menu={menu} isOpen={ this.state.isOpen }>
+        <View style={ styles.container }>
+          <MyStatusBar backgroundColor="#01579B"/>
+          <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
+          <TreasureHuntMap />
+        </View>
       </SideMenu>
     );
   }
