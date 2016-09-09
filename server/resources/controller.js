@@ -1,15 +1,5 @@
 var Puzzle = require('./Puzzle.js');
 
-//initialize from default.json
-require('../data/default.json')
-  .forEach(function(puzzleObj, index) {
-      new Puzzle(puzzleObj).save(function (err, data) {
-        err ? 
-          console.log(err) 
-          : console.log(data);
-      });
-    });
-
 module.exports = {
   //retrieve all puzzles
   retrievePuzzles: function (req, res) {
@@ -19,17 +9,23 @@ module.exports = {
         : res.status(200).send(JSON.stringify(data));
     });
   },
-  //COMING SOON!
-  // retrievePuzzleSet: function (req, res) {
-  //   Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
-  //     err ? 
-  //       res.status(404).send(err)
-  //       : res.status(200).send(JSON.stringify(data));
-  //   });
-  // },
+  // retrieve only puzzles in a given set (treasure hunt)
+  retrievePuzzleSet: function (req, res) {
+    Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
+      err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(data));
+    });
+  },
+  retrievePuzzle: function(req, res) {
+    Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle, riddleTitle: req.params.riddleTitle}, function (err, data) { 
+      err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(data));
+    });
+  },
   //will create all puzzles from array and return the array of puzzles created
   createPuzzles: function (req, res) {
-    console.log(req.body);
     var dataArr = [];
     req.body.forEach(function(puzzleObj, index) {
       new Puzzle(puzzleObj).save(function (err, data) {
@@ -45,16 +41,23 @@ module.exports = {
     Puzzle.remove({}, function(err, data) {
       err ? 
         res.status(500).send(err)
-        : res.status(200).send(data);
+        : res.status(201).send(data);
+    });
+  },
+  // 
+  deletePuzzleSet: function(req, res) {
+    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
+      err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(data));
+    });
+  },
+  deletePuzzle: function(req, res) {
+    Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle, riddleTitle: req.params.riddleTitle}, function (err, data) { 
+      err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(data));
     });
   }
-  // , //COMING SOON!
-  // deletePuzzleSet: function(req, res) {
-  //   Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, function (err, data) { 
-  //     err ? 
-  //       res.status(404).send(err)
-  //       : res.status(200).send(JSON.stringify(data));
-  //   });
-  // }
 };
   

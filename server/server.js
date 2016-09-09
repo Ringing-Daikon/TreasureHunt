@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-require('./db/index.js');
+require('./db/index.js'); //only need to execute database once to start
 
 /*************************
         SERVER
@@ -20,3 +20,4 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(require('./resources/router.js'));
 
 module.exports = app;
+
