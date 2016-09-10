@@ -51,14 +51,16 @@ class Lists extends React.Component {
     // renderRow takes one item from the data array and turns it into
     //   a formatted row.
     return (
-      <View style={styles.viewContainer}>
-        <MyStatusBar backgroundColor="#01579B"/>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData.title}</Text>}
-          style={styles.list}
-        >
-        </ListView>
+      <View style={styles.background}>
+        <View style={styles.viewContainer}>
+          <MyStatusBar backgroundColor="#01579B"/>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => <Text>{rowData.title}</Text>}
+            style={styles.listElement}
+          >
+          </ListView>
+        </View>
       </View>
     );
   }
@@ -67,16 +69,17 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
+    backgroundColor: 'aliceblue'
   },
   viewContainer: {
     flex: 1,
-    backgroundColor: 'aliceblue',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  list: {
-    backgroundColor: 'aliceblue'
+  listElement: {
+    alignItems: 'crenter',
+    justifyContent: 'center'
   }
   // container: {
   //   flex: 1,
