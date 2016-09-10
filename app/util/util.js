@@ -7,9 +7,9 @@ export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb =
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
-    server += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
+    serverPath += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      server += `/${riddleTitle.replace(/\s/g, '%20')}`;
+      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;
   }
   fetch(serverPath, 
   {
@@ -54,9 +54,9 @@ export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = n
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
-    server += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
+    serverPath += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      server += `/${riddleTitle.replace(/\s/g, '%20')}`;
+      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;
   }
   fetch(serverPath, 
   {
