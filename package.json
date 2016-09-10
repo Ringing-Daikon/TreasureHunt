@@ -3,7 +3,8 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start & nodemon server/index.js"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "server": "nodemon server/index.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
