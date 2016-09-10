@@ -9,8 +9,8 @@ export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb =
   if(treasureHuntTitle !== null) {
     serverPath += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;
-  } fetch(serverPath, {
+      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;} 
+  fetch(serverPath, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -39,8 +39,8 @@ export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = n
   if(treasureHuntTitle !== null) {
     serverPath += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;
-  } fetch(serverPath, {
+      serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;} 
+  fetch(serverPath, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
