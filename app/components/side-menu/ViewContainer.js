@@ -15,7 +15,7 @@ class ViewContainer extends React.Component {
   }
 }
 
-const styles = React.StyleSheet.create({
+const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     flexDirection: 'column',
