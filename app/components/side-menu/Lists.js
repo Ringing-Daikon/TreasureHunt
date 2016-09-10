@@ -5,9 +5,13 @@ import {
   Text,
   View
 } from 'react-native';
-// import ViewContainer from './ViewContainer';
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
+
+// 1- format list.
+// 2- make list buttons clickable
+// 3- test utility functions - use real data
+
 
 //puzzle titles
 // dummydata
@@ -47,10 +51,11 @@ class Lists extends React.Component {
     // renderRow takes one item from the data array and turns it into
     //   a formatted row.
     return (
-      <View style={styles.background}>
+      <View style={styles.viewContainer}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <Text>{rowData.title}</Text>}
+          style={styles.list}
         >
         </ListView>
       </View>
@@ -61,12 +66,41 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue'
-  }
-  
+  },
+  viewContainer: {
+    flex: 1,
+    backgroundColor: 'aliceblue',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+  },
+  // container: {
+  //   flex: 1,
+  //   justifyContent: 'center',
+  //   backgroundColor: '#F5FCFF',
+  // },
+  // wrapper: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   paddingRight: 10,
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: '#e9e9e9',
+  // },
+  // text: {
+  //   fontSize: 24,
+  //   fontWeight: "100",
+  //   color: 'black',
+  // },
+  // sectionHeader: {
+  //   backgroundColor: '#48D1CC'
+  // },
+  // sectionHeaderText: {
+  //   fontFamily: 'AvenirNext-Medium',
+  //   fontSize: 16,
+  //   color: 'white',
+  //   paddingLeft: 10
+  // },
 
 });
-
-
 
 module.exports = Lists;
