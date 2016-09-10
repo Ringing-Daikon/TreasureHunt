@@ -13,6 +13,8 @@ import TreasureHuntMap from './components/map/Map';
 import DrawerMenu from './components/common/DrawerMenu';
 import SideMenu from 'react-native-side-menu';
 import Lists from './components/side-menu/Lists';
+import LandingPage from './LandingPage';
+
 
 
 class TreasureHunt extends Component {
@@ -20,8 +22,13 @@ class TreasureHunt extends Component {
     super(props);
     this.state = {
       isSideMenuOpen: false,
-      screen: 'map'
+      screen: 'map',
+      onLanding: true
     };
+  }
+
+  hideLandingPage () {
+    this.setState({ onLanding: false });
   }
 
   showSideMenu () {
@@ -34,37 +41,45 @@ class TreasureHunt extends Component {
   }
 
   treasureHuntsButtonPressHandler() {
-    
+
   }
 
   //  The conditional statements below render different screens depending
   //  on the 'screen' state.
   render() {
-    const menu = <DrawerMenu
-      puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
-      treasureHuntsButtonPressHandler={this.treasureHuntsButtonPressHandler.bind(this)}
-    />;
-    if (this.state.screen === 'map') {
+    if (this.state.onLanding) {
       return (
-        <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
           <View style={ styles.container }>
             <MyStatusBar backgroundColor="#01579B"/>
-            <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-            <TreasureHuntMap />
+            <LandingPage hideLandingPage={this.hideLandingPage.bind(this)}/>
           </View>
-        </SideMenu>
-      );
+        );
+    } else {
+      const menu = <DrawerMenu
+        puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
+        treasureHuntsButtonPressHandler={this.treasureHuntsButtonPressHandler.bind(this)}
+      />;
+      if (this.state.screen === 'map') {
+        return (
+          <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
+            <View style={ styles.container }>
+              <MyStatusBar backgroundColor="#01579B"/>
+              <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
+              <TreasureHuntMap />
+            </View>
+          </SideMenu>
+        );
+      }
+      else if (this.state.screen === 'puzzleList') {
+        return (
+          <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
+            <View style={ styles.container }>
+              <Lists sideMenuOpen={this.state.isOpen}/>
+            </View>
+          </SideMenu>
+        );
+      }
     }
-    else if (this.state.screen === 'puzzleList') {
-      return (
-        <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
-          <View style={ styles.container }>
-            <Lists sideMenuOpen={this.state.isOpen}/>
-          </View>
-        </SideMenu>
-      );
-    }
-
   }
 }
 
