@@ -110,9 +110,9 @@ class TreasureHuntMap extends Component {
   render() {
     var markers = [];
     if (this.state.currentRiddle) {
-        markers.push(
-          <MapView.Marker key="current" coordinate={this.state.currentRiddle.location} />
-        );
+      markers.push(
+        <MapView.Marker key="current" coordinate={this.state.currentRiddle.location} />
+      );
     } 
     return (
       <View style={ styles.container }>

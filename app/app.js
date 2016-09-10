@@ -27,6 +27,8 @@ class TreasureHunt extends Component {
     }; 
   }
 
+  // When component is initially rendered, fetch all puzzles from the database
+  // and save it in the currentHunt state.
   componentWillMount() {
     retrievePuzzles((puzzles) => this.setState({currentHunt: puzzles}));
   }
