@@ -8,6 +8,9 @@ import {
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
 import MyStatusBar from '../common/MyStatusBar';
+import {retrievePuzzles} from '../../util/util';
+
+console.log(retrievePuzzles);
 
 // 1- format list.
 // 2- make list buttons clickable
