@@ -1,17 +1,17 @@
 const server = 'http://localhost:1337/api/puzzles';
 
 export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
-  let server = this.server; //create a local instance of server
+  var serverPath = server; //create a local instance of server
   if(typeof treasureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
-    server += `/${treasureHuntTitle.replace(/\s/, '%20')}`;
+    server += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      server += `/${riddleTitle.replace(/\s/, '%20')}`;
+      server += `/${riddleTitle.replace(/\s/g, '%20')}`;
   }
-  fetch(server, 
+  fetch(serverPath, 
   {
     method: 'GET',
     headers: {
@@ -48,17 +48,17 @@ export var createPuzzles = (puzzleArray = [], cb = null) => {
 };
 
 export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = null) => {
-  let server = this.server; //create a local instance of server
+  var serverPath = server; //create a local instance of server
   if(typeof treasureHuntTitle === 'function')
     cb = treasureHuntTitle, treasureHuntTitle = null;
   if(typeof riddleTitle === 'function')
     cb = riddleTitle, riddleTitle = null;
   if(treasureHuntTitle !== null) {
-    server += `/${treasureHuntTitle.replace(/\s/, '%20')}`;
+    server += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
-      server += `/${riddleTitle.replace(/\s/, '%20')}`;
+      server += `/${riddleTitle.replace(/\s/g, '%20')}`;
   }
-  fetch(server, 
+  fetch(serverPath, 
   {
     method: 'DELETE',
     headers: {
