@@ -20,7 +20,7 @@ var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) 
 
       <TouchableOpacity>
         <Text style={styles.text1}>
-          <Icon name="check-circle" size={30} color="white" /> Menu Item 1
+          <Icon name="check-circle" size={30} color="white" /> Map
         </Text>
       </TouchableOpacity>
 

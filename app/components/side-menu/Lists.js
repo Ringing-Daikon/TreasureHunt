@@ -8,10 +8,10 @@ import {
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
 import MyStatusBar from '../common/MyStatusBar';
+
 // 1- format list.
 // 2- make list buttons clickable
 // 3- test utility functions - use real data
-
 
 //puzzle titles
 // dummydata
@@ -52,12 +52,13 @@ class Lists extends React.Component {
     //   a formatted row.
     return (
       <View style={styles.background}>
-        <View style={styles.viewContainer}>
+        <View>
           <MyStatusBar backgroundColor="#01579B"/>
+          <Text style={styles.h1}>Current Puzzles</Text>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text>{rowData.title}</Text>}
-            style={styles.listElement}
+            renderRow={(rowData) => <Text style={styles.listElement}>{rowData.title}</Text>}
+            style={styles.list}
           >
           </ListView>
         </View>
@@ -69,18 +70,35 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue'
+    backgroundColor: 'aliceblue',
   },
-  viewContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+  h1: {
+    fontSize: 35,
+    textAlign: 'center',
+    paddingTop: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: 'red',
+  },
+  list: {
   },
   listElement: {
-    alignItems: 'crenter',
-    justifyContent: 'center'
-  }
+    textAlign: 'center',
+    paddingTop: 25,
+    fontSize: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e9e9e9'
+  },
+
+  // viewContainer: {
+  //   flex: 1,
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  // listElement: {
+  //   alignItems: 'crenter',
+  //   justifyContent: 'center'
+  // }
   // container: {
   //   flex: 1,
   //   justifyContent: 'center',
