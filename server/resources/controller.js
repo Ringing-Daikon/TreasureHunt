@@ -13,8 +13,7 @@ module.exports = {
     var dataArr = [];
     req.body.forEach((puzzleObj, index) => new Puzzle(puzzleObj).save((err, data) => {
         err ? res.status(500).send(err) : dataArr.push(data);
-        index === req.body.length - 1 && res.status(201).send(JSON.stringify(dataArr));
-      }));}, 
+        index === req.body.length - 1 && res.status(201).send(JSON.stringify(dataArr));}));}, 
   deletePuzzles (req, res) { //deletes all puzzles and returns status
     Puzzle.remove({}, (err, data) => err ? 
       res.status(500).send(err): res.status(201).send(data));}, 
