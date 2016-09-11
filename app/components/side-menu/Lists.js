@@ -37,9 +37,8 @@ class Lists extends React.Component {
     var ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-
     this.state = {
-      dataSource: ds.cloneWithRows(data)
+      dataSource: ds.cloneWithRows(this.props.puzzleData)
     }
   }
 
@@ -60,7 +59,7 @@ class Lists extends React.Component {
           <Text style={styles.h1}>Current Puzzles</Text>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text style={styles.listElement}>{rowData.title}</Text>}
+            renderRow={(rowData) => <Text style={styles.listElement}>{rowData.riddleTitle}</Text>}
             style={styles.list}
           >
           </ListView>

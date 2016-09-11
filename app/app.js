@@ -22,9 +22,9 @@ class TreasureHunt extends Component {
     this.state = {
       isSideMenuOpen: false,
       screen: 'map',
-      onLanding: true,      
-      currentHunt: [],
       currentRiddle: null
+      onLanding: true,
+      currentHunt: []
     }; 
   }
 
@@ -48,8 +48,8 @@ class TreasureHunt extends Component {
   }
 
   puzzlesButtonPressHandler() {
-    this.setState({ isSideMenuOpen: false});
-    this.setState({screen: 'puzzleList'});
+    this.setState({ isSideMenuOpen: false });
+    this.setState({ screen: 'puzzleList' });
   }
 
   treasureHuntsButtonPressHandler() {
@@ -86,7 +86,7 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <Lists sideMenuOpen={this.state.isOpen}/>
+              <Lists sideMenuOpen={this.state.isOpen} puzzleData={this.state.currentHunt}/>
             </View>
           </SideMenu>
         );
