@@ -3,14 +3,13 @@ import {
   ListView,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
 import MyStatusBar from '../common/MyStatusBar';
 import {retrievePuzzles} from '../../util/util';
-
-console.log(retrievePuzzles);
 
 // 1- format list.
 // 2- make list buttons clickable
@@ -59,7 +58,15 @@ class Lists extends React.Component {
           <Text style={styles.h1}>Current Puzzles</Text>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Text style={styles.listElement}>{rowData.riddleTitle}</Text>}
+            renderRow={(rowData) => {
+              return (
+                <TouchableOpacity onPress={() => this.props.puzzleInfoButtonPressHandler(rowData)}>
+                  <Text style={styles.listElement}>
+                    {rowData.riddleTitle}
+                  </Text>
+                </TouchableOpacity>
+              )
+            }}
             style={styles.list}
           >
           </ListView>

@@ -9,7 +9,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) => {
+var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
 
   return (
     <View style={styles.container}>
@@ -19,7 +19,7 @@ var DrawerMenu = ({puzzlesButtonPressHandler, treasureHuntsButtonPressHandler}) 
 
 
       <TouchableOpacity>
-        <Text style={styles.text1}>
+        <Text style={styles.text1} onPress={mapButtonPressHandler}>
           <Icon name="check-circle" size={30} color="white" /> Map
         </Text>
       </TouchableOpacity>
