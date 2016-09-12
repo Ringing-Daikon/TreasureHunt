@@ -17,7 +17,8 @@ var puzzleSchema = new mongoose.Schema({
   }, 
   location: {
     latitude: Number,
-    longitude: Number 
+    longitude: Number,
+    name: String
   }, 
   radius: {
     type: Number,

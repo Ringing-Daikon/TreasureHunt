@@ -1,35 +1,38 @@
 [
   {
-    "next": "Advent",
+    "riddleTitle":"Talking Points",
     "treasureHuntTitle":"Market Mystery",
+    "next": "Advent",
     "location":{
       "latitude":37.784991,
-      "longitude":-122.406624
+      "longitude":-122.406624,
+      "name": "Market and Fourth"
     },
-    "riddleTitle":"Talking Points",
     "riddleContent":"Feeling chatty.",
     "riddleAnswer":"converse"
   },
   {
+    "riddleTitle":"Advent",
     "next":"Das Spiel",
     "previous": "Talking Points",
     "treasureHuntTitle":"Market Mystery",
     "location":{
       "latitude":37.784613,
-      "longitude":-122.407617
+      "longitude":-122.407617, 
+      "name": "Powell-Market Cable Car Turntable"
     },
-    "riddleTitle":"Advent",
     "riddleContent":"Birth of a man memorialized in song.",
     "riddleAnswer":"1836"
   },
   {
+    "riddleTitle":"Das Spiel",
     "previous": "Advent",
     "treasureHuntTitle":"Market Mystery",
     "location":{
       "latitude":37.783523,
-      "longitude":-122.4091
+      "longitude":-122.4091, 
+      "name": "Mason and Turk"
     },
-    "riddleTitle":"Das Spiel",
     "riddleContent":"Find the cellar.",
     "riddleAnswer":"mikkeller"
   }
