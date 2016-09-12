@@ -93,7 +93,7 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B"/>
+              <MyStatusBar backgroundColor="#7A0000"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
               <TreasureHuntMap solvedRiddles={this.state.solvedRiddles} currentRiddle={this.state.currentRiddle} startNextRiddle={this.startNextRiddle.bind(this)}/>
             </View>
@@ -106,7 +106,7 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B"/>
+              <MyStatusBar backgroundColor="#D48217"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
               <Lists sideMenuOpen={this.state.isOpen}
                      puzzleData={this.state.currentHunt}
@@ -122,7 +122,7 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B" />
+              <MyStatusBar backgroundColor="#7A0000" />
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
               <PuzzleInfo displayData={this.state.puzzleSelection}
                           puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}

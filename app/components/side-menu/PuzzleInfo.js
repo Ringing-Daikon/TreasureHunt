@@ -28,7 +28,7 @@ class PuzzleInfo extends React.Component {
         <Image source={scrollBackground}  style={styles.backgroundImage}>
           <View>
             <TouchableOpacity onPress={this.props.puzzlesButtonPressHandler}>
-              <Icon style={styles.backButton} name="ios-arrow-back" size={20} color="black" />
+              <Icon style={styles.backButton} name="ios-arrow-back" size={20} color="darkred" />
             </TouchableOpacity>
             <Text style={[styles.info, styles.title]}>{data.riddleTitle}</Text>
             <View
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginTop: 5,
     marginBottom: 10,
-    backgroundColor: 'black',
+    backgroundColor: 'darkred',
   },
   treasureHunt: {
     fontSize: 16,
