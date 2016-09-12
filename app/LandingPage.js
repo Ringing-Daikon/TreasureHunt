@@ -6,21 +6,27 @@ import {
   View,
   StatusBar,
   Image,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native';
+import logo from './assets/Treasure-Hunt.png';
+import desert from './assets/desert.png';
+
 
 export default class LandingPage extends Component {
 
   render () {
     return (
       <View style={style.container}>
-       <Image
-          source={require('./assets/Treasure-Hunt.png')}
-        />
-        <Image/>
-        <TouchableHighlight onPress={this.props.hideLandingPage}>
-          <Text>Press Start!</Text>
-        </TouchableHighlight>
+
+        <TouchableOpacity onPress={this.props.hideLandingPage}>
+          <View>
+           <Image source={desert} >
+              <Image source={logo}></Image>
+              <Text style={style.text}>Press Start</Text>
+            </Image>
+          </View>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -28,18 +34,19 @@ export default class LandingPage extends Component {
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'aliceblue'
+    flex: 1
   },
   text: {
-    flex: 1,
-    // backgroundColor: 'aliceblue',
+    backgroundColor: 'transparent',
+    fontSize: 40,
     fontWeight: 'bold',
-    fontSize: 30
+    textAlign: 'center',
+    shadowColor: '#000000',
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 4,
+      width: 4
+    }
   }
 });
-
-
-
