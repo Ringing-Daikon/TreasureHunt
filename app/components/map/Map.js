@@ -105,8 +105,9 @@ class TreasureHuntMap extends Component {
     var markers = [];
     var riddleInfo = [];
     if (this.props.currentRiddle) {
+      var pinColor = (this.props.currentRiddle.discovered) ? '#FFB300' : '#f00';
       markers.push(
-        <MapView.Marker key="current" coordinate={this.props.currentRiddle.location} onSelect={()=>this.setState({showCurrentRiddle: true})} />
+        <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.setState({showCurrentRiddle: true})} />
       );
     }
     if (this.state.showCurrentRiddle) {
