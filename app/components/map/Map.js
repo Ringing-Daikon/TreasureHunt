@@ -4,11 +4,14 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableWithoutFeedback
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Dimensions from 'Dimensions';
 
 var Rf = 20903520; // mean radius of the earth (feet) at 39 degrees from the equator
 
@@ -58,7 +61,7 @@ class TreasureHuntMap extends Component {
         latitude: 37.78825,
         longitude: -122.4324,
       },
-      currentRiddle: null
+      showCurrentRiddle: false
     };
     this.watchID = null;
   }
@@ -67,12 +70,8 @@ class TreasureHuntMap extends Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(({coords})=>{
       var lastPosition = {longitude: coords.longitude, latitude: coords.latitude};
-      this.setState({lastPosition});
+      this.state.lastPosition = lastPosition;
     });
-    var currentHunt = this.props.currentHunt;
-    var currentRiddle = currentHunt.find(({previous})=>previous === 'null');
-    currentRiddle.discovered = false;
-    this.setState({currentRiddle});
   }
 
   // Track the user's location when component is done rendering
@@ -81,13 +80,11 @@ class TreasureHuntMap extends Component {
   componentDidMount () {
     this.watchID = navigator.geolocation.watchPosition(({coords}) => {
       var lastPosition = {longitude: coords.longitude, latitude: coords.latitude};
-      var currentRiddle = this.state.currentRiddle;
       this.state.lastPosition = lastPosition;
-      if (this.state.currentRiddle && this.state.currentRiddle.discovered === false && findDistance(this.state.lastPosition, this.state.currentRiddle.location) <= this.state.currentRiddle.radius) {
-        currentRiddle.discovered = true;
-        this.state.currentRiddle = currentRiddle;
+      if (this.props.currentRiddle && this.props.currentRiddle.discovered !== true && findDistance(this.state.lastPosition, this.props.currentRiddle.location) <= this.props.currentRiddle.radius) {
+        this.props.currentRiddle.discovered = true;
+        this.setState({showCurrentRiddle: true});
       }
-      this.forceUpdate();
     }, null, {enableHighAccuracy: true, distanceFilter: 4});
   }
 
@@ -96,24 +93,39 @@ class TreasureHuntMap extends Component {
     navigator.geolocation.clearWatch(this.watchID);
   }
 
-  // update the currentRiddle when the currentHunt prop changes
-  componentWillReceiveProps ({currentHunt}) {
-    var currentRiddle = currentHunt.find(({previous})=>previous === 'null');
-    currentRiddle.discovered = false;
-    this.setState({currentRiddle});
-  }
-
   centerOnUser () {
     this.refs.map.animateToCoordinate(this.state.lastPosition, 200);
   }
 
+  hideCurrentRiddle (e) {
+    this.setState({showCurrentRiddle: false});
+  }
+
   render() {
     var markers = [];
-    if (this.state.currentRiddle) {
+    var riddleInfo = [];
+    if (this.props.currentRiddle) {
+      var pinColor = (this.props.currentRiddle.discovered) ? '#FFB300' : '#f00';
       markers.push(
-        <MapView.Marker key="current" coordinate={this.state.currentRiddle.location} />
+        <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.setState({showCurrentRiddle: true})} />
       );
-    } 
+    }
+    if (this.state.showCurrentRiddle) {
+      riddleInfo = 
+      <TouchableOpacity style={ styles.overlay } onPress={this.hideCurrentRiddle.bind(this)}>
+        <TouchableWithoutFeedback>
+          <View style={ styles.riddleBlock }>
+            <Text style={ styles.riddle }>{ this.props.currentRiddle.riddleContent }</Text>
+            <View style={ styles.horizontal }>
+              <Text style={{fontSize: 16}}>Answer: </Text>
+              <View style={{borderBottomWidth: 1, width: Dimensions.get('window').width / 2.5}}>
+                <TextInput style={{height: 20}} autoFocus/>
+              </View>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </TouchableOpacity>;
+    }
     return (
       <View style={ styles.container }>
         <MapView
@@ -126,10 +138,10 @@ class TreasureHuntMap extends Component {
         >
           {markers}
         </MapView>
+        {riddleInfo}
         <TouchableOpacity style={ styles.button } onPress={ this.centerOnUser.bind(this) }>
           <Icon name="md-locate" size={28} color="#0972e3" />
         </TouchableOpacity>
-        
       </View>
     );
   }
@@ -160,6 +172,31 @@ const styles = StyleSheet.create({
     },
     borderRadius: 30
   },
+  riddleBlock: {
+    backgroundColor: '#FF4081',
+    width: Dimensions.get('window').width / 1.2,
+    padding: 20
+  },
+  riddle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18
+  },
+  horizontal: { 
+    flexDirection: 'row', 
+    paddingTop: 10
+  },
+  overlay: {
+    position: 'absolute',
+    alignItems: 'center',
+    paddingTop: 20,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  }
 });
 
 module.exports = TreasureHuntMap;

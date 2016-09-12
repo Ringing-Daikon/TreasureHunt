@@ -23,14 +23,20 @@ class TreasureHunt extends Component {
       isSideMenuOpen: false,
       screen: 'map',
       onLanding: true,      
-      currentHunt: []
+      currentHunt: [],
+      currentRiddle: null
     }; 
   }
 
   // When component is initially rendered, fetch all puzzles from the database
   // and save it in the currentHunt state.
   componentWillMount() {
-    retrievePuzzles((puzzles) => this.setState({currentHunt: puzzles}));
+    retrievePuzzles((puzzles) => {
+      this.setState({
+        currentHunt: puzzles, 
+        currentRiddle: puzzles.find(({previous})=>previous === 'null')
+      });
+    });
   }
 
   hideLandingPage () {
@@ -71,7 +77,7 @@ class TreasureHunt extends Component {
             <View style={ styles.container }>
               <MyStatusBar backgroundColor="#01579B"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <TreasureHuntMap currentHunt={this.state.currentHunt} />
+              <TreasureHuntMap currentHunt={this.state.currentHunt} currentRiddle={this.state.currentRiddle}/>
             </View>
           </SideMenu>
         );
