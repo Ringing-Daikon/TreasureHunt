@@ -152,7 +152,7 @@ module.exports = {
               )
     );
   },
-  getSolvedRiddle (req, res) {
+  getSolvedRiddles (req, res) {
     //gets all solved riddle for a user
     User.findOne({username: req.params.username}, 
       (err, data) => err ? 
