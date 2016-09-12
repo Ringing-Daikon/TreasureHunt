@@ -22,7 +22,7 @@ var puzzleSchema = new mongoose.Schema({
   }, 
   radius: {
     type: Number,
-    default: 40 
+    default: 100 
   }, 
   riddleTitle: String, 
   riddleContent: String,
