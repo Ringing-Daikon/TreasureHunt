@@ -56,7 +56,7 @@ class Lists extends React.Component {
       <View style={styles.background}>
         <Image source={scrollBackground}  style={styles.backgroundImage}>
           <View>
-            <Text style={styles.h1}>Riddles</Text>
+            <Text style={[styles.h1, styles.text]}>Riddles</Text>
             <ListView
               style={styles.list}
               dataSource={this.state.dataSource}
@@ -64,7 +64,7 @@ class Lists extends React.Component {
               renderRow={(rowData) => {
                 return (
                   <TouchableOpacity style={styles.row} onPress={() => this.props.puzzleInfoButtonPressHandler(rowData)}>
-                    <Text style={styles.rowInfo}>
+                    <Text style={[styles.rowInfo, styles.text]}>
                       {rowData.riddleTitle}
                     </Text>
                     <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="darkred" />
@@ -84,7 +84,10 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'mistyrose'
+    backgroundColor: 'black'
+  },
+  text: {
+    fontFamily: 'Papyrus'
   },
   backgroundImage:{
     width: width,
@@ -108,6 +111,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     fontSize: 18,
     marginLeft: 10,
+    marginTop: 3,
     backgroundColor: 'transparent',
   },
   row: {
@@ -119,11 +123,11 @@ const styles = StyleSheet.create({
     height: 1,
     width: width - 50,
     marginLeft: 25,
-    backgroundColor: 'black',
+    backgroundColor: '#b31217',
   },
   icon: {
     justifyContent: 'center',
-    padding: 15,
+    padding: 20,
     paddingRight: 35,
   }
 

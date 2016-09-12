@@ -54,7 +54,7 @@ var {height, width} = Dimensions.get('window')
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue',
+    backgroundColor: 'black',
   },
   backgroundImage:{
     width: width,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginTop: 5,
     marginBottom: 10,
-    backgroundColor: 'darkred',
+    backgroundColor: '#b31217',
   },
   treasureHunt: {
     fontSize: 16,
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     fontSize: 16,
     textAlign: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 3,
   },
   riddle: {
     backgroundColor: 'transparent',

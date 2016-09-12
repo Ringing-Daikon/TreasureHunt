@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#E88F19',
+    backgroundColor: '#e52d27',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   name: {
     fontWeight: 'bold',
