@@ -47,7 +47,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'aliceblue'
+    backgroundColor: '#b31217',
   },
   textTitle: {
     textAlign: 'center',
