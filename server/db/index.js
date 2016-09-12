@@ -9,7 +9,7 @@ mongoose.connect(mongoUri).connection
   .once('open', () => {
     console.log(require('chalk').green.dim('Connected to ' + mongoUri), 
       chalk.magenta.bold.underline('\nLoading Default Data...'));
-    var errCount = 0;
+    let errCount = 0;
     require('../data/default.json')
       .forEach((puzzleObj, index, arr) => new require('../resources/Puzzle.js')(puzzleObj).save(err => {
         err && errCount++;
