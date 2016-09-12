@@ -10,5 +10,5 @@ app.use(bodyParser.json());
 // Allows us to access the request url and parameters
 // on req.url and req.params.
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(require('./resources/router.js'));
+app.use('/api', require('./resources/router.js'));
 module.exports = app;
