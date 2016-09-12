@@ -128,18 +128,27 @@ module.exports = {
   },
 
   changeUserPass (req, res) {
+    //modifies username or password
     let str = '';
-    for(let key in req.body) 
+    let uDat = req.body;
+    for(let key in uDat) 
       str.length > 0 ? 
         str += `, ${key}`
         : str += key;
-    User.findOneAndUpdate(
+    uDat.hasOwnProperty('password') && 
+      bcrypt.hash(uDat.password, 10, (err, bcPass) => err ?
+        delete uDat.password //remove the password update if encryption fails
+        : uDat.password = bcPass);
+    let size = 0;
+    for(let key in uDat) //check if the uDat object still has a property (in case password hash fails or no input was provided)
+      uDat.hasOwnProperty(key) && size++;
+    size > 0 ? User.findOneAndUpdate(
       {username: req.params.username}, //filter data
       req.body, //data to be filled in
       err => err ? 
         res.status(404).send(err)
         : res.status(200).send(JSON.stringify(`Updated ${str}.`))
-    );
+      ) : res.status(500).send(new Error('No data. May be caused by bad input or bad encryption.'));
   },
 
   addSolvedRiddle (req, res) {
