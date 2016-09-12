@@ -13,4 +13,4 @@ mongoose.connect(mongoUri).connection
     require('../data/default.json')
       .forEach((puzzleObj, index, arr) => new require('../resources/Puzzle.js')(puzzleObj).save(err => {
         err && errCount++;
-        index === arr.length - 1 && console.log(chalk.cyan.bold(`Load Complete. ${errCount} conflicts.`))}));});
+        index === arr.length - 1 && console.log(chalk.cyan.bold(`Load Complete. (${errCount} conflicts)`))}));});
