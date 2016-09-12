@@ -107,7 +107,7 @@ class TreasureHuntMap extends Component {
     if (this.props.currentRiddle) {
       var pinColor = (this.props.currentRiddle.discovered) ? '#FFB300' : '#f00';
       markers.push(
-        <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.setState({showCurrentRiddle: true})} />
+        <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.props.currentRiddle.discovered && this.setState({showCurrentRiddle: true})} />
       );
     }
     if (this.state.showCurrentRiddle) {
@@ -117,9 +117,9 @@ class TreasureHuntMap extends Component {
           <View style={ styles.riddleBlock }>
             <Text style={ styles.riddle }>{ this.props.currentRiddle.riddleContent }</Text>
             <View style={ styles.horizontal }>
-              <Text style={{fontSize: 16}}>Answer: </Text>
+              <Text style={ styles.input }>Answer: </Text>
               <View style={{borderBottomWidth: 1, width: Dimensions.get('window').width / 2.5}}>
-                <TextInput style={{height: 20}} autoFocus/>
+                <TextInput style={ styles.input } autoFocus/>
               </View>
             </View>
           </View>
@@ -196,7 +196,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0
-  }
+  },
+  input: {
+    height: 20, 
+    fontSize: 18,
+  },
 });
 
 module.exports = TreasureHuntMap;
