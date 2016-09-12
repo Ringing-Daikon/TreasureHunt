@@ -24,7 +24,7 @@ module.exports = TopNavigationBar;
 
 const styles = StyleSheet.create({
   nav: {
-    flex: 1,
+    height: 40,
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#0288D1',
