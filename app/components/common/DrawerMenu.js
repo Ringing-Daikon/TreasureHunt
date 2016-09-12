@@ -19,7 +19,7 @@ var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
   return (
     <View style={styles.container}>
       <MyStatusBar backgroundColor="#01579B"/>
-      <View style={styles.logo}>
+      <View style={styles.logo }>
       <Image source={logo}/><Image/>
       </View>
 
