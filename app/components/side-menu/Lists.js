@@ -16,21 +16,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import scrollBackground from '../../assets/scrollBackground.png';
 
 var {height, width} = Dimensions.get('window')
-// 1- format list.
-// 2- make list buttons clickable
-// 3- test utility functions - use real data
-
-//puzzle titles
-// dummydata
-var data = [{
-  title: 'The Goat of Hack Reactor',
-},
-{
-  title: 'Talking with friends'
-},
-{
-  title: 'Sword in the water'
-}];
 
 class Lists extends React.Component {
   constructor(props) {
@@ -52,12 +37,7 @@ class Lists extends React.Component {
       return (
         <View
           key={`${sectionID}-${rowID}`}
-          style={{
-            height: 1,
-            width: width - 30,
-            marginLeft: 15,
-            backgroundColor: 'black',
-          }}
+          style={styles.rowSeparator}
         />
       );
     }
@@ -75,8 +55,8 @@ class Lists extends React.Component {
     return (
       <View style={styles.background}>
         <Image source={scrollBackground}  style={styles.backgroundImage}>
-          <View style={styles.viewContainer}>
-            <Text style={styles.h1}>Current Puzzles</Text>
+          <View>
+            <Text style={[styles.h1, styles.text]}>Riddles</Text>
             <ListView
               style={styles.list}
               dataSource={this.state.dataSource}
@@ -84,10 +64,10 @@ class Lists extends React.Component {
               renderRow={(rowData) => {
                 return (
                   <TouchableOpacity style={styles.row} onPress={() => this.props.puzzleInfoButtonPressHandler(rowData)}>
-                    <Text style={styles.rowInfo}>
+                    <Text style={[styles.rowInfo, styles.text]}>
                       {rowData.riddleTitle}
                     </Text>
-                    <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="#0972e3" />
+                    <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="darkred" />
                   </TouchableOpacity>
                 )
               }}
@@ -104,9 +84,10 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue'
+    backgroundColor: 'black'
   },
-  viewContainer: {
+  text: {
+    fontFamily: 'Papyrus'
   },
   backgroundImage:{
     width: width,
@@ -116,7 +97,7 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 35,
     textAlign: 'center',
-    marginTop: 55,
+    marginTop: 60,
     paddingTop: 15,
     backgroundColor: 'transparent'
   },
@@ -129,6 +110,8 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingLeft: 20,
     fontSize: 18,
+    marginLeft: 10,
+    marginTop: 3,
     backgroundColor: 'transparent',
   },
   row: {
@@ -136,10 +119,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'space-between'
   },
+  rowSeparator: {
+    height: 1,
+    width: width - 50,
+    marginLeft: 25,
+    backgroundColor: '#b31217',
+  },
   icon: {
     justifyContent: 'center',
-    padding: 15,
-    paddingRight: 25
+    padding: 20,
+    paddingRight: 35,
   }
 
 });
