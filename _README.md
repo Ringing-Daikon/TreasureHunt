@@ -24,6 +24,8 @@
 > npm run server
 - Do both:
 > npm run all
+- run mongo database
+> mongod
 
 ## Requirements
 
