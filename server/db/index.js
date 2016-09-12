@@ -4,6 +4,7 @@
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 const mongoUri = 'mongodb://localhost/treasure-hunt-database';
+
 mongoose.connect(mongoUri).connection
   .on('error', err => console.log(err))
   .once('open', () => {
