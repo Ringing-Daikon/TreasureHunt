@@ -19,7 +19,9 @@ var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
   return (
     <View style={styles.container}>
       <MyStatusBar backgroundColor="#01579B"/>
+      <View style={styles.logo}>
       <Image source={logo}/><Image/>
+      </View>
 
       <TouchableOpacity onPress={mapButtonPressHandler}>
         <View style={styles.map}>
@@ -39,15 +41,21 @@ var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
 
 
 var styles = StyleSheet.create({
+  logo: {
+    paddingLeft: 10
+  },
   riddle: {
     paddingLeft: 10
   },
   map: {
-    paddingRight: 20
+    paddingLeft: 8,
+    paddingTop: 60,
+    paddingBottom: 70,
+
   },
   container: {
     flex: 1,
-    backgroundColor: 'aliceblue'
+    backgroundColor: 'black'
   },
   textTitle: {
     textAlign: 'center',

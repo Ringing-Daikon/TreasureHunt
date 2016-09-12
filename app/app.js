@@ -27,7 +27,7 @@ class TreasureHunt extends Component {
       onLanding: true,
       currentHunt: [],
       puzzleSelection: null,
-    }; 
+    };
   }
 
   // When component is initially rendered, fetch all puzzles from the database
@@ -35,7 +35,7 @@ class TreasureHunt extends Component {
   componentWillMount() {
     retrievePuzzles((puzzles) => {
       this.setState({
-        currentHunt: puzzles, 
+        currentHunt: puzzles,
         currentRiddle: puzzles.find(({previous})=>previous === 'null')
       });
     });
@@ -84,6 +84,7 @@ class TreasureHunt extends Component {
       //Render the map.
       if (this.state.screen === 'map') {
         return (
+            //Side menu is a react-native plug-in. You pass in a component to render.
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
               <MyStatusBar backgroundColor="#01579B"/>
