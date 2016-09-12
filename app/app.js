@@ -23,7 +23,7 @@ class TreasureHunt extends Component {
     this.state = {
       isSideMenuOpen: false,
       screen: 'map',
-      currentRiddle: null
+      currentRiddle: null,
       onLanding: true,
       currentHunt: [],
       puzzleSelection: null,
