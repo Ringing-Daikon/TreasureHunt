@@ -10,7 +10,7 @@ module.exports = {
     Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle, riddleTitle: req.params.riddleTitle}, (err, data) => err ? 
       res.status(404).send(err) : res.status(200).send(JSON.stringify(data)));}, 
   createPuzzles (req, res) { //takes an array of puzzles and return the array of puzzles created
-    var dataArr = [];
+    let dataArr = [];
     req.body.forEach((puzzleObj, index) => new Puzzle(puzzleObj).save((err, data) => {
         err ? res.status(500).send(err) : dataArr.push(data);
         index === req.body.length - 1 && res.status(201).send(JSON.stringify(dataArr));}));}, 
