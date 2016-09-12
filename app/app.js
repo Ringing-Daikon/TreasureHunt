@@ -27,6 +27,7 @@ class TreasureHunt extends Component {
       onLanding: true,
       currentHunt: [],
       puzzleSelection: null,
+      solvedRiddles: [],
     }; 
   }
 
@@ -55,14 +56,20 @@ class TreasureHunt extends Component {
   }
 
   puzzleInfoButtonPressHandler(rowInfo) {
-    console.log(rowInfo);
-    this.setState({puzzleSelection: rowInfo})
+    this.setState({puzzleSelection: rowInfo});
     this.setState({screen: 'puzzleInfo'});
   }
 
   mapButtonPressHandler() {
     this.setState({ isSideMenuOpen: false });
     this.setState({ screen: 'map' });
+  }
+
+  startNextRiddle() {
+    var solvedRiddles = this.state.solvedRiddles;
+    solvedRiddles.push(this.state.currentRiddle);
+    var currentRiddle = this.state.currentHunt.find(({riddleTitle})=>riddleTitle === this.state.currentRiddle.next);
+    this.setState({currentRiddle, solvedRiddles});
   }
 
   //  The conditional statements below render different screens depending
@@ -86,9 +93,9 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B"/>
+              <MyStatusBar backgroundColor="#b31217"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <TreasureHuntMap currentHunt={this.state.currentHunt} currentRiddle={this.state.currentRiddle}/>
+              <TreasureHuntMap solvedRiddles={this.state.solvedRiddles} currentRiddle={this.state.currentRiddle} startNextRiddle={this.startNextRiddle.bind(this)}/>
             </View>
           </SideMenu>
         );
@@ -99,7 +106,7 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B"/>
+              <MyStatusBar backgroundColor="#b31217"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
               <Lists sideMenuOpen={this.state.isOpen}
                      puzzleData={this.state.currentHunt}
@@ -115,9 +122,11 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
-              <MyStatusBar backgroundColor="#01579B" />
+              <MyStatusBar backgroundColor="#b31217" />
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <PuzzleInfo displayData={this.state.puzzleSelection}/>
+              <PuzzleInfo displayData={this.state.puzzleSelection}
+                          puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
+              />
             </View>
           </SideMenu>
         );
