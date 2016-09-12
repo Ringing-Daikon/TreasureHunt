@@ -15,7 +15,7 @@ mongoose.connect(mongoUri).connection
     require('../data/default.json')
       .forEach((puzzleObj, index, arr) => new require('../resources/Puzzle.js')(puzzleObj).save(err => {
         err && errCount++;
-        index === arr.length - 1 && console.log(chalk.cyan.bold('Load Complete.'), chalk.yellow(`(${errCount} conflicts)`), chalk.bold.blue.underline('\n\nMotivational Quote:\n'), chalk.cyan(`${quotes[Math.floor(Math.random() * quotes.length)].replace(/~/, '\n  -')}`))
+        index === arr.length - 1 && console.log(chalk.cyan.bold('Load Complete.'), chalk.yellow(`(${errCount} conflicts)`), chalk.bold.blue.underline('\n\nMotivational Quote:'), chalk.cyan(`\n${quotes[Math.floor(Math.random() * quotes.length)].replace(/~/, '\n  -')}`))
         })
       );
   });
