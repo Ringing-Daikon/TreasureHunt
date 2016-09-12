@@ -4,48 +4,34 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import riddle from '../../assets/riddle3.png';
+import logo from '../../assets/Treasure-Hunt2.png';
+import map from '../../assets/drawerMap2.png';
+import MyStatusBar from './MyStatusBar';
 
 
 var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle} >
-        Choose Your Adventure!
-      </Text>
+      <MyStatusBar backgroundColor="#01579B"/>
+      <Image source={logo}/><Image/>
 
-
-      <TouchableOpacity>
-        <Text style={styles.text1} onPress={mapButtonPressHandler}>
-          <Icon name="check-circle" size={30} color="white" /> Map
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <Text style={styles.text2}>
-          <Icon name="chevron-circle-right" size={30} color="white" /> Menu Item 2
-        </Text>
+      <TouchableOpacity onPress={mapButtonPressHandler}>
+        <View style={styles.map}>
+         <Image source={map} ></Image>
+        </View>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={puzzlesButtonPressHandler}>
-        <Text style={styles.text1}>
-          <Icon name="list-ol" size={30} color="white" /> Current Puzzles
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <Text style={styles.text2}>
-          <Icon name="list" size={30} color="white" /> Treasure Hunts
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity>
-        <Text style={styles.text1}>
-          <Icon name="history" size={30} color="white" /> Histroy
-        </Text>
+        <View style={styles.riddle}>
+         <Image source={riddle} >
+          </Image>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -53,34 +39,30 @@ var DrawerMenu = ({puzzlesButtonPressHandler, mapButtonPressHandler}) => {
 
 
 var styles = StyleSheet.create({
+  riddle: {
+    paddingLeft: 10
+  },
+  map: {
+    paddingRight: 20
+  },
   container: {
     flex: 1,
-    marginBottom: 30,
-    justifyContent: 'center',
     backgroundColor: 'aliceblue'
   },
   textTitle: {
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 20,
-    color: 'steelblue'
-  },
-  text1: {
-    justifyContent: 'center',
     color: 'black',
-    fontWeight: 'bold',
-    fontSize: 25,
-    height: 50,
-    backgroundColor: 'steelblue'
   },
-  text2: {
-    justifyContent: 'center',
-    color: 'black',
+  text: {
+    backgroundColor: 'transparent',
+    fontSize: 20,
     fontWeight: 'bold',
-    fontSize: 25,
-    height: 50,
-    backgroundColor: 'skyblue'
+    color: 'black',
+    textAlign: 'center',
   }
 });
+
 
 export default DrawerMenu;
