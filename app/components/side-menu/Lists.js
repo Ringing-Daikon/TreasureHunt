@@ -16,21 +16,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import scrollBackground from '../../assets/scrollBackground.png';
 
 var {height, width} = Dimensions.get('window')
-// 1- format list.
-// 2- make list buttons clickable
-// 3- test utility functions - use real data
-
-//puzzle titles
-// dummydata
-var data = [{
-  title: 'The Goat of Hack Reactor',
-},
-{
-  title: 'Talking with friends'
-},
-{
-  title: 'Sword in the water'
-}];
 
 class Lists extends React.Component {
   constructor(props) {

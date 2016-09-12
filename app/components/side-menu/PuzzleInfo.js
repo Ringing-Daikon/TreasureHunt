@@ -4,14 +4,15 @@ import {
   Text,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import MyStatusBar from '../common/MyStatusBar';
 import TopNavigationBar from '../common/TopNavigationBar';
 import DrawerMenu from '../common/DrawerMenu';
 import scrollBackground from '../../assets/scrollBackground.png';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class PuzzleInfo extends React.Component {
   constructor(props) {
@@ -21,12 +22,18 @@ class PuzzleInfo extends React.Component {
 
   render() {
     var data = this.props.displayData;
+    console.log(data);
     return (
       <View style={styles.background}>
         <Image source={scrollBackground}  style={styles.backgroundImage}>
           <View>
+            <TouchableOpacity onPress={this.props.puzzlesButtonPressHandler}>
+              <Icon style={styles.backButton} name="ios-arrow-back" size={20} color="black" />
+            </TouchableOpacity>
             <Text style={styles.info, styles.title}>{data.riddleTitle}</Text>
             <Text style={styles.info, styles.treasureHunt}>{data.treasureHuntTitle}</Text>
+            <Text style={styles.info, styles.locationTag}>Location:</Text>
+            <Text style={styles.info, styles.location}>{data.location.name}</Text>
             <Text style={styles.info, styles.riddle}>{data.riddleContent}</Text>
           </View>
         </Image>
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     textAlign: 'center',
-    marginTop: 80,
+    marginTop: 30,
     paddingTop: 15,
     backgroundColor: 'transparent',
   },
@@ -66,6 +73,12 @@ const styles = StyleSheet.create({
     marginTop: 5,
     backgroundColor: 'transparent',
   },
+  locationTag: {
+    backgroundColor: 'transparent'
+  },
+  location: {
+    backgroundColor: 'transparent'
+  },
   riddle: {
     backgroundColor: 'transparent',
     fontSize: 20,
@@ -74,9 +87,13 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginTop: 25
   },
-  location: {
-    flexDirection: 'row'
-  }
+  backButton: {
+    marginTop: 25,
+    marginLeft: 28,
+    fontSize: 25,
+    backgroundColor: 'transparent',
+  },
+
 });
 
 module.exports = PuzzleInfo;

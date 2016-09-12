@@ -124,7 +124,9 @@ class TreasureHunt extends Component {
             <View style={ styles.container }>
               <MyStatusBar backgroundColor="#01579B" />
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <PuzzleInfo displayData={this.state.puzzleSelection}/>
+              <PuzzleInfo displayData={this.state.puzzleSelection}
+                          puzzlesButtonPressHandler={this.puzzlesButtonPressHandler.bind(this)}
+              />
             </View>
           </SideMenu>
         );
