@@ -6,12 +6,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise; //fixes depreciated mongoose promise by implementing ES6 promise.
 
-var riddleSchema = new mongoose.Schema({
-  treasureHuntTitle: String,
-  riddleTitle: String
-}, 
-{versionKey: false});
-
 var userSchema = new mongoose.Schema({
   username: { 
     type: String,
@@ -24,7 +18,10 @@ var userSchema = new mongoose.Schema({
     required: true
   }, 
   solvedRiddles: {
-    type: [riddleSchema],
+    type: [{
+      treasureHuntTitle: String,
+      riddleTitle: String
+    }],
     default: []
   }
 }, 
