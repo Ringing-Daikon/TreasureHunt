@@ -124,6 +124,9 @@ class TreasureHuntMap extends Component {
       markers.push(
         <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.props.currentRiddle.discovered && this.setState({showCurrentRiddle: true})} />
       );
+      markers.push(
+        <MapView.Circle key="currentRadius" fillColor="rgba(179, 18, 23, 0.1)" strokeColor="rgba(179, 18, 23, 0.2)" center={this.props.currentRiddle.location} radius={this.props.currentRiddle.radius * 0.3048} />
+      );
     }
 
     // display all solved riddle
