@@ -61,7 +61,8 @@ class TreasureHuntMap extends Component {
         latitude: 37.78825,
         longitude: -122.4324,
       },
-      showCurrentRiddle: false
+      showCurrentRiddle: false,
+      overlay: 'riddle',
     };
     this.watchID = null;
   }
@@ -98,31 +99,67 @@ class TreasureHuntMap extends Component {
   }
 
   hideCurrentRiddle (e) {
-    this.setState({showCurrentRiddle: false});
+    this.setState({showCurrentRiddle: false, overlay: 'riddle'});
+  }
+
+  onInput(input) {
+    if (input.toLowerCase() === this.props.currentRiddle.riddleAnswer.toLowerCase()) {
+      if (this.props.currentRiddle.next !== 'null') {
+        this.state.overlay = 'solved';
+      } else {
+        this.state.overlay = 'completed';
+      }
+      this.props.startNextRiddle();
+    }
   }
 
   render() {
     var markers = [];
     var riddleInfo = [];
+
+    // display current riddleif it exists
     if (this.props.currentRiddle) {
+      // change pincolor to orange if it was discovered
       var pinColor = (this.props.currentRiddle.discovered) ? '#FFB300' : '#f00';
       markers.push(
         <MapView.Marker key="current" pinColor={pinColor} coordinate={this.props.currentRiddle.location} onSelect={()=>this.props.currentRiddle.discovered && this.setState({showCurrentRiddle: true})} />
       );
     }
+
+    // display all solved riddle
+    this.props.solvedRiddles.forEach(({location, treasureHuntTitle, riddleTitle})=>{
+      markers.push(
+        <MapView.Marker key={treasureHuntTitle + '#' + riddleTitle} pinColor="#00C853" coordinate={location} />
+      );
+    });
+
     if (this.state.showCurrentRiddle) {
+      var overlayBlock = [];
+      if (this.state.overlay === 'riddle') {
+        overlayBlock =
+         <View style={[ styles.block, styles.riddleBlock ]}>
+          <Text style={ styles.blockTitle }>{ this.props.currentRiddle.riddleContent }</Text>
+          <View style={ styles.horizontal }>
+            <Text style={ styles.input }>Answer: </Text>
+            <View style={{borderBottomWidth: 1, width: Dimensions.get('window').width / 2.5}}>
+              <TextInput style={ styles.input } onChangeText={this.onInput.bind(this)} autoFocus/>
+            </View>
+          </View>
+        </View>;
+      } else if (this.state.overlay === 'solved') {
+        overlayBlock = 
+        <View style={[ styles.block, styles.solvedBlock ]}>
+          <Text style={ styles.blockTitle }>Riddle Solved!</Text>
+        </View>;
+      } else {
+        overlayBlock = <View style={[ styles.block, styles.completedBlock ]}>
+          <Text style={ styles.blockTitle }>Treasure Hunt Completed!!</Text>
+        </View>;
+      }
       riddleInfo = 
       <TouchableOpacity style={ styles.overlay } onPress={this.hideCurrentRiddle.bind(this)}>
         <TouchableWithoutFeedback>
-          <View style={ styles.riddleBlock }>
-            <Text style={ styles.riddle }>{ this.props.currentRiddle.riddleContent }</Text>
-            <View style={ styles.horizontal }>
-              <Text style={ styles.input }>Answer: </Text>
-              <View style={{borderBottomWidth: 1, width: Dimensions.get('window').width / 2.5}}>
-                <TextInput style={ styles.input } autoFocus/>
-              </View>
-            </View>
-          </View>
+          {overlayBlock}
         </TouchableWithoutFeedback>
       </TouchableOpacity>;
     }
@@ -172,12 +209,20 @@ const styles = StyleSheet.create({
     },
     borderRadius: 30
   },
-  riddleBlock: {
-    backgroundColor: '#FF4081',
+  block: {
     width: Dimensions.get('window').width / 1.2,
     padding: 20
   },
-  riddle: {
+  riddleBlock: {
+    backgroundColor: '#FF4081',
+  },
+  solvedBlock: {
+    backgroundColor: '#4CAF50',
+  },
+  completedBlock: {
+    backgroundColor: '#40C4FF',
+  },
+  blockTitle: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',

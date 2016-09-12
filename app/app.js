@@ -27,6 +27,7 @@ class TreasureHunt extends Component {
       onLanding: true,
       currentHunt: [],
       puzzleSelection: null,
+      solvedRiddles: [],
     }; 
   }
 
@@ -55,14 +56,20 @@ class TreasureHunt extends Component {
   }
 
   puzzleInfoButtonPressHandler(rowInfo) {
-    console.log(rowInfo);
-    this.setState({puzzleSelection: rowInfo})
+    this.setState({puzzleSelection: rowInfo});
     this.setState({screen: 'puzzleInfo'});
   }
 
   mapButtonPressHandler() {
     this.setState({ isSideMenuOpen: false });
     this.setState({ screen: 'map' });
+  }
+
+  startNextRiddle() {
+    var solvedRiddles = this.state.solvedRiddles;
+    solvedRiddles.push(this.state.currentRiddle);
+    var currentRiddle = this.state.currentHunt.find(({riddleTitle})=>riddleTitle === this.state.currentRiddle.next);
+    this.setState({currentRiddle, solvedRiddles});
   }
 
   //  The conditional statements below render different screens depending
@@ -88,7 +95,7 @@ class TreasureHunt extends Component {
             <View style={ styles.container }>
               <MyStatusBar backgroundColor="#01579B"/>
               <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
-              <TreasureHuntMap currentHunt={this.state.currentHunt} currentRiddle={this.state.currentRiddle}/>
+              <TreasureHuntMap solvedRiddles={this.state.solvedRiddles} currentRiddle={this.state.currentRiddle} startNextRiddle={this.startNextRiddle.bind(this)}/>
             </View>
           </SideMenu>
         );
