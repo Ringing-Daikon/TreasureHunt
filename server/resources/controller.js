@@ -1,5 +1,6 @@
 const Puzzle = require('./Puzzle.js');
 const User = require('./User.js');
+var bcrypt = require('bcrypt');
 
 module.exports = { 
 
@@ -76,12 +77,26 @@ module.exports = {
 
   addUser (req, res) {
     //adds a user
-    new User({
-      username: req.params.username,
-      password: req.body.password
-    }).save((err, data) => err ? 
-      res.status(500).send(err)
-      : res.status(201).send(data)
+    bcrypt.hash(req.body.password, 10, (err, bcPass) => err ?
+      res.status(500).send(err) 
+      : new User({
+          username: req.params.username,
+          password: bcPass 
+        }).save((err, data) => err ? 
+          res.status(500).send(err)
+          : res.status(201).send(JSON.stringify(data))
+        )
+    );
+  },
+
+  compareUserPass(req, res) {
+    User.findOne({username: req.params.username}, 
+      (err, data) => err ?
+        res.status(404).send(err)
+        : bcrypt.compare(req.body.password, data.password, (err, match) => err ? 
+            res.status(500).send(err)
+            : res.status(200).send(JSON.stringify(match))
+          )
     );
   },
 
@@ -90,7 +105,7 @@ module.exports = {
     User.find({}, 
       (err, data) => err ?
         res.status(404).send(err)
-        : res.status(200).send(data)
+        : res.status(200).send(JSON.stringify(data))
     );
   },
 
@@ -99,7 +114,7 @@ module.exports = {
     User.findOne({username: req.params.username}, 
       (err, data) => err ? 
         res.status(404).send(err)
-        : res.status(200).send(data)
+        : res.status(200).send(JSON.stringify(data))
     );
   },
 

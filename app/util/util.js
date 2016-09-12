@@ -61,7 +61,7 @@ export var deletePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb = n
     cb = riddleTitle, 
     riddleTitle = null;
   if(treasureHuntTitle !== null) {
-    serverPath += `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
+    path= `/${treasureHuntTitle.replace(/\s/g, '%20')}`;
     if(riddleTitle !== null)
       serverPath += `/${riddleTitle.replace(/\s/g, '%20')}`;
   } 
@@ -140,6 +140,36 @@ export var addUserSolvedRiddle = (treasureHuntTitle, riddleTitle, cb = null) => 
       treasureHuntTitle: treasureHuntTitle, 
       riddleTitle: riddleTitle
     })
+  })
+  .then(response => response.json())
+  .then(responseJson => cb && cb(responseJson))
+  .catch(error => console.error(error));
+};
+
+export var checkPassword = (username, password, cb) => {
+  //HTTP POST request
+  fetch(`${USERS_URL}/${username}/pass`, {
+    method: 'GET',
+    headers: STD_HDR, 
+    body: JSON.stringify({
+      password: password
+    })
+  })
+  .then(response => response.json())
+  .then(responseJson => cb(responseJson))
+  .catch(error => console.error(error));
+};
+
+export var updateUsernameOrPassword = (username = null, password = null, cb = null) => {
+  let obj = {};
+  if(username !== null) 
+    obj.username = username;
+  if(password !== null) 
+    obj.password = password;  
+  fetch(`${USERS_URL}/${username}`, {
+    method: 'PUT',
+    headers: STD_HDR, 
+    body: JSON.stringify(obj)
   })
   .then(response => response.json())
   .then(responseJson => cb && cb(responseJson))

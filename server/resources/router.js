@@ -26,6 +26,9 @@ router.route('/api/users/:username')
 
 router.route('/api/users/:username/riddles')
   .get(api.getSolvedRiddles) 
-  .post(api.addSolvedRiddle); 
+  .post(api.addSolvedRiddle);
+  
+router.route('/api/users/:username/pass')
+  .post(api.compareUserPass);
 
 module.exports = router;
