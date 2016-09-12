@@ -37,12 +37,7 @@ class Lists extends React.Component {
       return (
         <View
           key={`${sectionID}-${rowID}`}
-          style={{
-            height: 1,
-            width: width - 30,
-            marginLeft: 15,
-            backgroundColor: 'black',
-          }}
+          style={styles.rowSeparator}
         />
       );
     }
@@ -60,8 +55,8 @@ class Lists extends React.Component {
     return (
       <View style={styles.background}>
         <Image source={scrollBackground}  style={styles.backgroundImage}>
-          <View style={styles.viewContainer}>
-            <Text style={styles.h1}>Current Puzzles</Text>
+          <View>
+            <Text style={styles.h1}>Riddles</Text>
             <ListView
               style={styles.list}
               dataSource={this.state.dataSource}
@@ -72,7 +67,7 @@ class Lists extends React.Component {
                     <Text style={styles.rowInfo}>
                       {rowData.riddleTitle}
                     </Text>
-                    <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="#0972e3" />
+                    <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="darkred" />
                   </TouchableOpacity>
                 )
               }}
@@ -89,9 +84,7 @@ class Lists extends React.Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue'
-  },
-  viewContainer: {
+    backgroundColor: 'mistyrose'
   },
   backgroundImage:{
     width: width,
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 35,
     textAlign: 'center',
-    marginTop: 55,
+    marginTop: 60,
     paddingTop: 15,
     backgroundColor: 'transparent'
   },
@@ -114,6 +107,7 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingLeft: 20,
     fontSize: 18,
+    marginLeft: 10,
     backgroundColor: 'transparent',
   },
   row: {
@@ -121,10 +115,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     justifyContent: 'space-between'
   },
+  rowSeparator: {
+    height: 1,
+    width: width - 50,
+    marginLeft: 25,
+    backgroundColor: 'black',
+  },
   icon: {
     justifyContent: 'center',
     padding: 15,
-    paddingRight: 25
+    paddingRight: 35,
   }
 
 });

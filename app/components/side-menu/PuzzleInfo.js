@@ -30,11 +30,17 @@ class PuzzleInfo extends React.Component {
             <TouchableOpacity onPress={this.props.puzzlesButtonPressHandler}>
               <Icon style={styles.backButton} name="ios-arrow-back" size={20} color="black" />
             </TouchableOpacity>
-            <Text style={styles.info, styles.title}>{data.riddleTitle}</Text>
-            <Text style={styles.info, styles.treasureHunt}>{data.treasureHuntTitle}</Text>
-            <Text style={styles.info, styles.locationTag}>Location:</Text>
-            <Text style={styles.info, styles.location}>{data.location.name}</Text>
-            <Text style={styles.info, styles.riddle}>{data.riddleContent}</Text>
+            <Text style={[styles.info, styles.title]}>{data.riddleTitle}</Text>
+            <View
+              style={styles.titleSpacer}
+            />
+            <Text style={[styles.info, styles.treasureHunt]}>{data.treasureHuntTitle}</Text>
+            <Text style={[styles.info, styles.locationTag]}>at</Text>
+            <Text style={[styles.info, styles.location]}>{data.location.name}</Text>
+            <View
+              style={styles.titleSpacer}
+            />
+            <Text style={[styles.info, styles.riddle]}>{data.riddleContent}</Text>
           </View>
         </Image>
 
@@ -58,6 +64,8 @@ const styles = StyleSheet.create({
   info: {
     justifyContent: 'center',
     textAlign: 'center',
+    fontFamily: 'Papyrus',
+    fontWeight: '900',
     backgroundColor: 'transparent'
   },
   title: {
@@ -65,30 +73,43 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 30,
     paddingTop: 15,
-    backgroundColor: 'transparent',
+  },
+  titleSpacer: {
+    height: 1,
+    width: width - 80,
+    marginLeft: 40,
+    marginTop: 5,
+    marginBottom: 10,
+    backgroundColor: 'black',
   },
   treasureHunt: {
-    fontSize: 15,
+    fontSize: 16,
     textAlign: 'center',
     marginTop: 5,
     backgroundColor: 'transparent',
   },
   locationTag: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontSize: 14
   },
   location: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    fontSize: 16,
+    textAlign: 'center',
+    justifyContent: 'center'
   },
   riddle: {
     backgroundColor: 'transparent',
-    fontSize: 20,
+    fontSize: 21,
     width: width-80,
     textAlign: 'center',
     marginLeft: 40,
     marginTop: 25
   },
   backButton: {
-    marginTop: 25,
+    marginTop: 26,
     marginLeft: 28,
     fontSize: 25,
     backgroundColor: 'transparent',
