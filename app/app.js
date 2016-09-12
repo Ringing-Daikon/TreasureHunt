@@ -26,7 +26,7 @@ class TreasureHunt extends Component {
       currentRiddle: null
       onLanding: true,
       currentHunt: [],
-      puzzleSelection: null
+      puzzleSelection: null,
     }; 
   }
 

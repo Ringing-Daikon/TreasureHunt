@@ -5,13 +5,17 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
 import MyStatusBar from '../common/MyStatusBar';
 import {retrievePuzzles} from '../../util/util';
+import Icon from 'react-native-vector-icons/Ionicons';
+import scrollBackground from '../../assets/scrollBackground.png';
 
+var {height, width} = Dimensions.get('window')
 // 1- format list.
 // 2- make list buttons clickable
 // 3- test utility functions - use real data
@@ -42,6 +46,22 @@ class Lists extends React.Component {
     }
   }
 
+  // This creates a separator (the line) between each list element.
+  // it is passed into the 'ListView' component as a prop.
+  _renderSeparator(sectionID: number, rowID: number, adjacentRowHighlighted: bool) {
+      return (
+        <View
+          key={`${sectionID}-${rowID}`}
+          style={{
+            height: 1,
+            width: width - 30,
+            marginLeft: 15,
+            backgroundColor: 'black',
+          }}
+        />
+      );
+    }
+
   render() {
     const menu = <DrawerMenu
       puzzlesButtonPressHandler={this.props.puzzlesButtonPressHandler}
@@ -54,88 +74,73 @@ class Lists extends React.Component {
     //   a formatted row.
     return (
       <View style={styles.background}>
-        <View>
-          <Text style={styles.h1}>Current Puzzles</Text>
-          <ListView
-            style={styles.list}
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => {
-              return (
-                <TouchableOpacity onPress={() => this.props.puzzleInfoButtonPressHandler(rowData)}>
-                  <Text style={styles.listElement}>
-                    {rowData.riddleTitle}
-                  </Text>
-                </TouchableOpacity>
-              )
-            }}
-          >
-          </ListView>
-        </View>
+        <Image source={scrollBackground}  style={styles.backgroundImage}>
+          <View style={styles.viewContainer}>
+            <Text style={styles.h1}>Current Puzzles</Text>
+            <ListView
+              style={styles.list}
+              dataSource={this.state.dataSource}
+              renderSeparator={this._renderSeparator}
+              renderRow={(rowData) => {
+                return (
+                  <TouchableOpacity style={styles.row} onPress={() => this.props.puzzleInfoButtonPressHandler(rowData)}>
+                    <Text style={styles.rowInfo}>
+                      {rowData.riddleTitle}
+                    </Text>
+                    <Icon style={styles.icon} name="ios-arrow-forward" size={20} color="#0972e3" />
+                  </TouchableOpacity>
+                )
+              }}
+            >
+            </ListView>
+          </View>
+        </Image>
       </View>
     );
   }
 }
 
-var {height, width} = Dimensions.get('window')
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: 'aliceblue',
+    backgroundColor: 'aliceblue'
+  },
+  viewContainer: {
+  },
+  backgroundImage:{
+    width: width,
+    resizeMode: 'stretch',
+    height: height - 60
   },
   h1: {
     fontSize: 35,
     textAlign: 'center',
+    marginTop: 55,
     paddingTop: 15,
-    borderBottomWidth: 2,
-    borderBottomColor: 'red',
+    backgroundColor: 'transparent'
   },
   list: {
     height: height
   },
-  listElement: {
-    textAlign: 'center',
-    paddingTop: 25,
-    fontSize: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e9e9e9'
+  rowInfo: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 15,
+    paddingLeft: 20,
+    fontSize: 18,
+    backgroundColor: 'transparent',
   },
-
-  // viewContainer: {
-  //   flex: 1,
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // listElement: {
-  //   alignItems: 'crenter',
-  //   justifyContent: 'center'
-  // }
-  // container: {
-  //   flex: 1,
-  //   justifyContent: 'center',
-  //   backgroundColor: '#F5FCFF',
-  // },
-  // wrapper: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   paddingRight: 10,
-  //   borderBottomWidth: 1,
-  //   borderBottomColor: '#e9e9e9',
-  // },
-  // text: {
-  //   fontSize: 24,
-  //   fontWeight: "100",
-  //   color: 'black',
-  // },
-  // sectionHeader: {
-  //   backgroundColor: '#48D1CC'
-  // },
-  // sectionHeaderText: {
-  //   fontFamily: 'AvenirNext-Medium',
-  //   fontSize: 16,
-  //   color: 'white',
-  //   paddingLeft: 10
-  // },
+  row: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    justifyContent: 'space-between'
+  },
+  icon: {
+    justifyContent: 'center',
+    padding: 15,
+    paddingRight: 25
+  }
 
 });
 
