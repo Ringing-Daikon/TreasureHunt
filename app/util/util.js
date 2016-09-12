@@ -38,6 +38,34 @@ export var retrievePuzzles = (treasureHuntTitle = null, riddleTitle = null, cb) 
 
 //should take an array of puzzle objects, will then stringify before sending. 
 export var createPuzzles = (puzzleArray = [], cb = null) => {
+  /*-----------------------------
+       Puzzle Schema Reference:
+  -------------------------------
+  {
+    treasureHuntTitle: String,
+    next: {
+      type: String,
+      default: 'null' 
+    }, 
+    previous: {
+      type: String,
+      default: 'null' 
+    }, 
+    location: {
+      latitude: Number,
+      longitude: Number,
+      name: String
+    }, 
+    radius: {
+      type: Number,
+      default: 100 
+    }, 
+    riddleTitle: String, 
+    riddleContent: String,
+    riddleAnswer: String 
+  }
+  -----------------------------*/
+
   //HTTP POST request
   fetch(PUZZLES_URL, {
     method: 'POST',
