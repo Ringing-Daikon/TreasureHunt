@@ -10,7 +10,8 @@ module.exports = {
     Puzzle.find({}, 
       (err, data) => err ? 
         res.status(404).send(err) 
-        : res.status(200).send(JSON.stringify(data)));
+        : res.status(200).send(JSON.stringify(data))
+    );
   }, 
 
   getPuzzleSet (req, res) { 
@@ -18,7 +19,8 @@ module.exports = {
     Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle}, 
       (err, data) => err ? 
         res.status(404).send(err) 
-        : res.status(200).send(JSON.stringify(data)));
+        : res.status(200).send(JSON.stringify(data))
+    );
   }, 
 
   getPuzzle (req, res) { 
@@ -26,7 +28,8 @@ module.exports = {
     Puzzle.find({treasureHuntTitle: req.params.treasureHuntTitle, riddleTitle: req.params.riddleTitle}, 
       (err, data) => err ? 
         res.status(404).send(err) 
-        : res.status(200).send(JSON.stringify(data)));
+        : res.status(200).send(JSON.stringify(data))
+    );
   }, 
 
   addPuzzles (req, res) { 
@@ -47,7 +50,8 @@ module.exports = {
     Puzzle.remove({}, 
       (err, data) => err ? 
         res.status(404).send(err)
-        : res.status(204).send(data));
+        : res.status(200).send(JSON.stringify(data))
+    );
   }, 
 
   deletePuzzleSet (req, res) { 
@@ -55,7 +59,8 @@ module.exports = {
     Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle}, 
       (err, data) => err ? 
         res.status(404).send(err) 
-        : res.status(204).send(JSON.stringify(data)));
+        : res.status(200).send(JSON.stringify(data))
+    );
   }, 
 
   deletePuzzle (req, res) { 
@@ -63,7 +68,8 @@ module.exports = {
     Puzzle.remove({treasureHuntTitle: req.params.treasureHuntTitle, riddleTitle: req.params.riddleTitle}, 
       (err, data) => err ? 
         res.status(404).send(err) 
-        : res.status(204).send(JSON.stringify(data)));
+        : res.status(200).send(JSON.stringify(data))
+    );
   },
 
 /***User Controllers***/
@@ -79,12 +85,21 @@ module.exports = {
     );
   },
 
+  getUsers (req, res) {
+    //gets all users
+    User.find({}, 
+      (err, data) => err ?
+        res.status(404).send(err)
+        : res.status(200).send(data)
+    );
+  },
+
   getUser (req, res) {
     //gets a user
-    User.find({username: req.params.username}, 
+    User.findOne({username: req.params.username}, 
       (err, data) => err ? 
         res.status(404).send(err)
-        : res.status(200).send(data[0])
+        : res.status(200).send(data)
     );
   },
 
@@ -93,15 +108,56 @@ module.exports = {
     User.remove({username: req.params.username}, 
       (err, data) => err ? 
         res.status(404).send(err)
-        : res.status(204).send(data)
+        : res.status(200).send(JSON.stringify(data))
+    );
+  },
+
+  changeUserPass (req, res) {
+    let str = '';
+    for(let key in req.body) 
+      str.length > 0 ? 
+        str += `, ${key}`
+        : str += key;
+    User.findOneAndUpdate(
+      {username: req.params.username}, //filter data
+      req.body, //data to be filled in
+      err => err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(`Updated ${str}.`))
     );
   },
 
   addSolvedRiddle (req, res) {
-    //adds a solved riddle. takes an object with username and 
+    //adds a solved riddle. takes an object with riddleTitle and treasureHuntTitle
+    //first handle duplicate puzzles in controller since MongoDB does not support unique keys for subdocs.
+    User.findOne({username: req.params.username}, 
+      (err, data) => err ?
+        res.status(404).send(err)
+        : (() => { //check if riddle exists already in solvedRiddles
+            let d = data.solvedRiddles,
+            r = req.body;
+            for(let i = 0; i < d.length; i++) 
+              if(d[i].riddleTitle === r.riddleTitle &&
+                d[i].treasureHuntTitle === r.treasureHuntTitle)
+                return true;
+            return false;
+          })() ? 
+            res.status(500).send(JSON.stringify('Duplicate riddle.'))
+            : User.findOneAndUpdate(
+              {username: req.params.username}, //filter data
+              {$push: {solvedRiddles: req.body}}, //data to be filled in
+              err => err ? 
+                res.status(404).send(err)
+                : res.status(200).send(JSON.stringify(`Added ${req.body.treasureHuntTitle}'s ${req.body.riddleTitle}`))
+              )
+    );
   },
-
   getSolvedRiddle (req, res) {
     //gets all solved riddle for a user
+    User.findOne({username: req.params.username}, 
+      (err, data) => err ? 
+        res.status(404).send(err)
+        : res.status(200).send(JSON.stringify(data.solvedRiddles))
+    );
   }
 };

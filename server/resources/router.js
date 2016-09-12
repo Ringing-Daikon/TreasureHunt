@@ -15,14 +15,17 @@ router.route('/api/puzzles/:treasureHuntTitle/:riddleTitle')
   .delete(api.deletePuzzle);
 
 /***User Routes***/
+router.route('/api/users')
+  .get(api.getUsers);
 
 router.route('/api/users/:username')
   .get(api.getUser)
   .post(api.addUser)
-  .put(api.addSolvedRiddle)
+  .put(api.changeUserPass)
   .delete(api.deleteUser);
 
-router.route('api/users/:username/riddles')
-  .get(api.getSolvedRiddle);
+router.route('/api/users/:username/riddles')
+  .get(api.getSolvedRiddle)
+  .post(api.addSolvedRiddle);
 
 module.exports = router;
