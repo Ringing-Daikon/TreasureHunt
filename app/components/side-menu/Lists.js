@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 import SideMenu from 'react-native-side-menu';
 import DrawerMenu from '../common/DrawerMenu';
@@ -54,9 +55,9 @@ class Lists extends React.Component {
     return (
       <View style={styles.background}>
         <View>
-          <MyStatusBar backgroundColor="#01579B"/>
           <Text style={styles.h1}>Current Puzzles</Text>
           <ListView
+            style={styles.list}
             dataSource={this.state.dataSource}
             renderRow={(rowData) => {
               return (
@@ -67,7 +68,6 @@ class Lists extends React.Component {
                 </TouchableOpacity>
               )
             }}
-            style={styles.list}
           >
           </ListView>
         </View>
@@ -76,6 +76,7 @@ class Lists extends React.Component {
   }
 }
 
+var {height, width} = Dimensions.get('window')
 const styles = StyleSheet.create({
   background: {
     flex: 1,
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'red',
   },
   list: {
+    height: height
   },
   listElement: {
     textAlign: 'center',

@@ -99,6 +99,8 @@ class TreasureHunt extends Component {
         return (
           <SideMenu menu={ menu } isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>
+              <MyStatusBar backgroundColor="#01579B"/>
+              <TopNavigationBar showSideMenu={this.showSideMenu.bind(this)} />
               <Lists sideMenuOpen={this.state.isOpen}
                      puzzleData={this.state.currentHunt}
                      puzzleInfoButtonPressHandler={this.puzzleInfoButtonPressHandler.bind(this)}
@@ -110,10 +112,6 @@ class TreasureHunt extends Component {
 
       //Render info about a puzzle (after clicking on the item in the puzzleList).
       else if (this.state.screen === 'puzzleInfo') {
-        const menu = <DrawerMenu
-          puzzlesButtonPressHandler={this.props.puzzlesButtonPressHandler}
-          treasureHuntsButtonPressHandler={this.props.treasureHuntsButtonPressHandler}
-        />;
         return (
           <SideMenu menu={menu} isOpen={ this.state.isSideMenuOpen }>
             <View style={ styles.container }>

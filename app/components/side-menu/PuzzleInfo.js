@@ -19,7 +19,6 @@ class PuzzleInfo extends React.Component {
     var data = this.props.displayData;
     return (
       <View style={styles.background}>
-
         <View>
           <Text style={styles.title}>{data.riddleTitle}</Text>
           <Text>Location:</Text>
