@@ -9,7 +9,7 @@ mongoose.connect(mongoUri).connection
   .on('error', err => console.log(err))
   .once('open', () => {
     console.log(require('chalk').green.dim('Connected to ' + mongoUri), 
-      chalk.magenta.bold.underline('\nLoading Default Data...'));
+      chalk.magenta.bold.underline('\n\nLoading Default Data...'));
     let errCount = 0;
     let quotes = require('../data/quotes.json')
     require('../data/default.json')
